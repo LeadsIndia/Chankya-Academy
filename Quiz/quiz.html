@@ -2,70 +2,159 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Indian Geography Quiz - Chankya Academy</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Indian Geography Quiz</title>
   <style>
-    body { font-family: sans-serif; background: #f5f5f5; margin: 0; padding: 0; }
-    .container { max-width: 600px; margin: 2em auto; background: #fff; padding: 2em 1.5em; border-radius: 8px; box-shadow: 0 2px 8px #0001; }
-    h1 { text-align: center; }
-    .question { margin-bottom: 1.2em; padding: 1em; border-radius: 6px; background: #fafafa; }
-    .heatmap-correct { background: #c8e6c9; }
-    .heatmap-wrong { background: #ffcdd2; }
-    .options label { display: block; margin-bottom: 0.5em; }
-    #result { margin: 1.5em 0 0 0; font-size: 1.2em; }
-    #section-result { margin-top: 1.5em; }
-    .heatmap { display: flex; gap: 6px; margin-bottom: 1em; }
-    .heatmap-box { width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 4px; font-weight: bold; }
-    .btn { background: #1976d2; color: #fff; border: none; padding: 0.8em 1.5em; border-radius: 4px; cursor: pointer; font-size: 1em; margin-right: 0.8em; }
-    .btn:disabled { background: #aaa; }
-    footer { margin-top: 2em; text-align: center; font-size: 0.95em; color: #555; }
-    @media (max-width: 600px) {
-      .container { padding: 1em 0.5em; }
-      .heatmap-box { width: 22px; height: 22px; font-size: 0.95em; }
+    body { font-family: Arial, sans-serif; background: #f4f7fa; }
+    .container { max-width: 800px; margin: 32px auto; background: #fff; border-radius: 10px; box-shadow: 0 2px 12px #0002; padding: 32px; }
+    h2 { text-align: center; }
+    .section-block { margin: 24px 0 16px 0; }
+    .section-title { font-size: 1.15em; color: #2c3e50; font-weight: bold; margin-bottom: 10px; }
+    .question { margin: 12px 0 6px 0; }
+    .options label { display: block; margin: 4px 0; }
+    .actions { text-align: center; margin: 20px 0; }
+    button { padding: 10px 24px; border: none; border-radius: 6px; background: #2980b9; color: #fff; font-size: 1em; margin: 0 10px; cursor: pointer; }
+    button:hover { background: #1c5d85; }
+    #scorecard { margin-top: 32px; }
+    .heatmap-row { margin: 12px 0; }
+    .heatcell {
+      display: inline-block;
+      width: 56px;
+      height: 56px;
+      line-height: 56px;
+      margin: 0 8px 0 0;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 1.2em;
+      font-weight: bold;
+      text-align: center;
+      vertical-align: middle;
+      box-shadow: 0 1px 4px #0001;
     }
+    .heat-low { background: #e74c3c; }
+    .heat-mid { background: #f39c12; }
+    .heat-high { background: #27ae60; }
+    .score-details { margin: 8px 0 0 0; color: #2c3e50; }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Indian Geography Quiz</h1>
-    <form id="quiz-form"></form>
-    <div id="result"></div>
-    <div id="heatmap"></div>
-    <div id="section-result"></div>
-    <button class="btn" id="submit-btn" type="button">Submit</button>
-    <button class="btn" id="reset-btn" type="button" style="display:none;">Reset</button>
+    <h2>Indian Geography Quiz</h2>
+    <form id="quizForm"></form>
+    <div class="actions">
+      <button type="button" onclick="submitQuiz()">Submit</button>
+      <button type="button" onclick="resetQuiz()">Reset</button>
+    </div>
+    <div id="scorecard"></div>
   </div>
-  <footer>
-    Based on <a href="https://github.com/Chankya-Academy/Quiz-App" target="_blank" rel="noopener">Chankya-Academy/Quiz-App</a>
-  </footer>
   <script>
-    // Quiz question bank: add more as needed!
-    const questions = [
-      {
-        section: "Soil",
-        question: "Which soil is most suitable for cotton cultivation in India?",
-        options: ["Red Soil", "Black Soil", "Laterite Soil", "Alluvial Soil"],
-        answer: 1
-      },
-      {
-        section: "Soil",
-        question: "Red soil is rich in which mineral?",
-        options: ["Calcium", "Iron", "Potassium", "Magnesium"],
-        answer: 1
-      },
-      {
-        section: "Rivers",
-        question: "Which is the longest river in India?",
-        options: ["Ganga", "Yamuna", "Godavari", "Narmada"],
-        answer: 0
-      },
-      {
-        section: "Rivers",
-        question: "Which river forms an estuary in India?",
-        options: ["Ganga", "Yamuna", "Narmada", "Brahmaputra"],
-        answer: 2
-      },
-      {
-        section: "Cities",
-        question: "Which city is known as the Diamond City of India?",
-        options: ["Mumbai", "Surat", "Jaipur", "Hyderabad"],
+    // Sectioned question bank
+    const questionBank = {
+      'North': [
+        { q: 'Capital of Uttarakhand?', a: 'Dehradun', opts: ['Dehradun', 'Shimla', 'Lucknow', 'Chandigarh'] },
+        { q: 'River through Delhi?', a: 'Yamuna', opts: ['Yamuna', 'Ganga', 'Brahmaputra', 'Godavari'] },
+        { q: 'Mountain range in J&K?', a: 'Himalayas', opts: ['Himalayas', 'Aravalli', 'Vindhya', 'Satpura'] }
+      ],
+      'South': [
+        { q: "India's 'Silicon Valley'?", a: 'Bengaluru', opts: ['Bengaluru', 'Chennai', 'Hyderabad', 'Kochi'] },
+        { q: 'Longest river in South?', a: 'Godavari', opts: ['Godavari', 'Krishna', 'Kaveri', 'Periyar'] },
+        { q: 'State famous for backwaters?', a: 'Kerala', opts: ['Kerala', 'Tamil Nadu', 'Karnataka', 'Andhra Pradesh'] }
+      ],
+      'East': [
+        { q: 'Capital of West Bengal?', a: 'Kolkata', opts: ['Kolkata', 'Patna', 'Bhubaneswar', 'Ranchi'] },
+        { q: 'River forming Sundarbans?', a: 'Ganga', opts: ['Ganga', 'Brahmaputra', 'Mahanadi', 'Subarnarekha'] },
+        { q: 'Largest tea producing state?', a: 'Assam', opts: ['Assam', 'West Bengal', 'Odisha', 'Jharkhand'] }
+      ],
+      'West': [
+        { q: "India's Financial Capital?", a: 'Mumbai', opts: ['Mumbai', 'Ahmedabad', 'Pune', 'Surat'] },
+        { q: 'Gir Forest is famous for?', a: 'Lion', opts: ['Lion', 'Tiger', 'Elephant', 'Leopard'] },
+        { q: 'Desert in Rajasthan?', a: 'Thar', opts: ['Thar', 'Kutch', 'Gobi', 'Sahara'] }
+      ],
+      'Central': [
+        { q: 'Capital of MP?', a: 'Bhopal', opts: ['Bhopal', 'Indore', 'Jabalpur', 'Gwalior'] },
+        { q: 'River in Kanha National Park?', a: 'Narmada', opts: ['Narmada', 'Son', 'Tapti', 'Godavari'] },
+        { q: 'State of Khajuraho temples?', a: 'Madhya Pradesh', opts: ['Madhya Pradesh', 'Chhattisgarh', 'Maharashtra', 'Odisha'] }
+      ]
+    };
+
+    // Generate 2 questions per section (total 10)
+    function getQuizQuestions() {
+      let quizQs = [];
+      Object.keys(questionBank).forEach(section => {
+        let arr = [...questionBank[section]];
+        for (let i = arr.length - 1; i > 0; i--) {
+          let j = Math.floor(Math.random() * (i + 1));
+          [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        quizQs = quizQs.concat(arr.slice(0, 2).map(q => ({...q, section})));
+      });
+      // Shuffle all questions
+      for (let i = quizQs.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [quizQs[i], quizQs[j]] = [quizQs[j], quizQs[i]];
+      }
+      return quizQs;
+    }
+
+    let quizQuestions = [];
+    function renderQuiz() {
+      quizQuestions = getQuizQuestions();
+      const form = document.getElementById('quizForm');
+      form.innerHTML = '';
+      let sectionGroups = {};
+      quizQuestions.forEach((q, idx) => {
+        if (!sectionGroups[q.section]) sectionGroups[q.section] = [];
+        sectionGroups[q.section].push({ ...q, idx });
+      });
+      Object.keys(sectionGroups).forEach(section => {
+        form.innerHTML += `<div class="section-block"><div class="section-title">${section} India</div>`;
+        sectionGroups[section].forEach(qobj => {
+          form.innerHTML += `
+            <div class="question">${qobj.q}</div>
+            <div class="options">
+              ${qobj.opts.map(opt => `
+                <label><input type="radio" name="q${qobj.idx}" value="${opt}"> ${opt}</label>
+              `).join('')}
+            </div>
+          `;
+        });
+        form.innerHTML += `</div>`;
+      });
+      document.getElementById('scorecard').innerHTML = '';
+    }
+
+    function submitQuiz() {
+      let sectionScores = {};
+      quizQuestions.forEach((q, idx) => {
+        if (!sectionScores[q.section]) sectionScores[q.section] = { correct: 0, total: 0 };
+        sectionScores[q.section].total++;
+        let selected = document.querySelector(`input[name="q${idx}"]:checked`);
+        if (selected && selected.value === q.a) sectionScores[q.section].correct++;
+      });
+
+      // Heatmap and scorecard
+      let heatmapHTML = '<div class="heatmap-row">';
+      let detailsHTML = '';
+      Object.keys(sectionScores).forEach(section => {
+        const { correct, total } = sectionScores[section];
+        let pct = total ? correct / total : 0;
+        let heatClass = pct > 0.8 ? 'heat-high' : pct > 0.4 ? 'heat-mid' : 'heat-low';
+        heatmapHTML += `<span class="heatcell ${heatClass}" title="${section} India">${section[0]}</span>`;
+        detailsHTML += `<div class="score-details">${section} India: <b>${correct} / ${total}</b></div>`;
+      });
+      heatmapHTML += '</div>';
+      document.getElementById('scorecard').innerHTML = `
+        <h3>Section-wise Heatmap</h3>
+        ${heatmapHTML}
+        <div>${detailsHTML}</div>
+      `;
+    }
+
+    function resetQuiz() {
+      renderQuiz();
+    }
+
+    // Initial load
+    renderQuiz();
+  </script>
+</body>
+</html>
