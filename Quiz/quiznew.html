@@ -1,184 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Indian Geography Quiz</title>
-  <style>
-    body { font-family: Arial, sans-serif; background: #f4f7fa; }
-    .container { max-width: 800px; margin: 32px auto; background: #fff; border-radius: 10px; box-shadow: 0 2px 12px #0002; padding: 32px; }
-    h2 { text-align: center; }
-    .section-block { margin: 24px 0 16px 0; }
-    .section-title { font-size: 1.15em; color: #2c3e50; font-weight: bold; margin-bottom: 10px; }
-    .question { margin: 12px 0 6px 0; }
-    .options label { display: block; margin: 4px 0; }
-    .actions { text-align: center; margin: 20px 0; }
-    button { padding: 10px 24px; border: none; border-radius: 6px; background: #2980b9; color: #fff; font-size: 1em; margin: 0 10px; cursor: pointer; }
-    button:hover { background: #1c5d85; }
-    #scorecard { margin-top: 32px; }
-    .heatmap-row { margin: 12px 0; }
-    .heatcell {
-      display: inline-block;
-      width: 56px;
-      height: 56px;
-      line-height: 56px;
-      margin: 0 8px 0 0;
-      border-radius: 8px;
-      color: #fff;
-      font-size: 1.2em;
-      font-weight: bold;
-      text-align: center;
-      vertical-align: middle;
-      box-shadow: 0 1px 4px #0001;
-    }
-    .heat-low { background: #e74c3c; }
-    .heat-mid { background: #f39c12; }
-    .heat-high { background: #27ae60; }
-    .score-details { margin: 8px 0 0 0; color: #2c3e50; }
-  </style>
+    <meta charset="UTF-8">
+    <title>Indian Geography Quiz Generator (PyScript)</title>
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 24px; }
+        #output { white-space: pre-wrap; background: #f8f8f8; padding: 12px; border-radius: 6px; }
+        button { margin: 10px 0; }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h2>Indian Geography Quiz</h2>
-    <form id="quizForm"></form>
-    <div class="actions">
-      <button type="button" id="submitBtn">Submit</button>
-      <button type="button" id="resetBtn">Reset</button>
-    </div>
-    <div id="scorecard"></div>
-  </div>
-  <script>
-    // Sectioned question bank (expand as needed for less repetition)
-    const questionBank = {
-      'North': [
-        { q: 'Capital of Uttarakhand?', a: 'Dehradun', opts: ['Dehradun', 'Shimla', 'Lucknow', 'Chandigarh'] },
-        { q: 'River through Delhi?', a: 'Yamuna', opts: ['Yamuna', 'Ganga', 'Brahmaputra', 'Godavari'] },
-        { q: 'Mountain range in J&K?', a: 'Himalayas', opts: ['Himalayas', 'Aravalli', 'Vindhya', 'Satpura'] },
-        { q: 'Which city is known as the Pink City?', a: 'Jaipur', opts: ['Jaipur', 'Agra', 'Lucknow', 'Amritsar'] },
-        { q: 'Which state shares border with China?', a: 'Himachal Pradesh', opts: ['Himachal Pradesh', 'Punjab', 'Haryana', 'Delhi'] }
-      ],
-      'South': [
-        { q: "India's 'Silicon Valley'?", a: 'Bengaluru', opts: ['Bengaluru', 'Chennai', 'Hyderabad', 'Kochi'] },
-        { q: 'Longest river in South?', a: 'Godavari', opts: ['Godavari', 'Krishna', 'Kaveri', 'Periyar'] },
-        { q: 'State famous for backwaters?', a: 'Kerala', opts: ['Kerala', 'Tamil Nadu', 'Karnataka', 'Andhra Pradesh'] },
-        { q: 'Which city is called the Queen of the Arabian Sea?', a: 'Kochi', opts: ['Kochi', 'Chennai', 'Visakhapatnam', 'Mangalore'] },
-        { q: 'Which state has the highest coastline in South?', a: 'Andhra Pradesh', opts: ['Andhra Pradesh', 'Kerala', 'Tamil Nadu', 'Karnataka'] }
-      ],
-      'East': [
-        { q: 'Capital of West Bengal?', a: 'Kolkata', opts: ['Kolkata', 'Patna', 'Bhubaneswar', 'Ranchi'] },
-        { q: 'River forming Sundarbans?', a: 'Ganga', opts: ['Ganga', 'Brahmaputra', 'Mahanadi', 'Subarnarekha'] },
-        { q: 'Largest tea producing state?', a: 'Assam', opts: ['Assam', 'West Bengal', 'Odisha', 'Jharkhand'] },
-        { q: 'Which state is famous for Jagannath Temple?', a: 'Odisha', opts: ['Odisha', 'Bihar', 'Jharkhand', 'West Bengal'] },
-        { q: 'Which city is called the Steel City of India?', a: 'Jamshedpur', opts: ['Jamshedpur', 'Durgapur', 'Bokaro', 'Rourkela'] }
-      ],
-      'West': [
-        { q: "India's Financial Capital?", a: 'Mumbai', opts: ['Mumbai', 'Ahmedabad', 'Pune', 'Surat'] },
-        { q: 'Gir Forest is famous for?', a: 'Lion', opts: ['Lion', 'Tiger', 'Elephant', 'Leopard'] },
-        { q: 'Desert in Rajasthan?', a: 'Thar', opts: ['Thar', 'Kutch', 'Gobi', 'Sahara'] },
-        { q: 'Which city is known as the City of Lakes?', a: 'Udaipur', opts: ['Udaipur', 'Jaipur', 'Bhopal', 'Surat'] },
-        { q: 'Which state is famous for Garba dance?', a: 'Gujarat', opts: ['Gujarat', 'Maharashtra', 'Rajasthan', 'Goa'] }
-      ],
-      'Central': [
-        { q: 'Capital of MP?', a: 'Bhopal', opts: ['Bhopal', 'Indore', 'Jabalpur', 'Gwalior'] },
-        { q: 'River in Kanha National Park?', a: 'Narmada', opts: ['Narmada', 'Son', 'Tapti', 'Godavari'] },
-        { q: 'State of Khajuraho temples?', a: 'Madhya Pradesh', opts: ['Madhya Pradesh', 'Chhattisgarh', 'Maharashtra', 'Odisha'] },
-        { q: 'Which city is known as the Heart of India?', a: 'Nagpur', opts: ['Nagpur', 'Bhopal', 'Raipur', 'Jabalpur'] },
-        { q: 'Which state is famous for Marble Rocks?', a: 'Madhya Pradesh', opts: ['Madhya Pradesh', 'Chhattisgarh', 'Uttar Pradesh', 'Bihar'] }
-      ]
-    };
+    <h2>Indian Geography Quiz Generator (PyScript)</h2>
+    <label>Questions per Region: <input type="number" id="per_region" value="5" min="1" max="100"/></label>
+    <button py-click="generate_quiz">Generate Quiz</button>
+    <button py-click="download_json">Download JSON</button>
+    <div id="output"></div>
 
-    // Utility: shuffle array
-    function shuffle(arr) {
-      for (let i = arr.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
-      }
-      return arr;
-    }
+    <py-script>
+import json
+from js import document, Blob, URL
 
-    // Get 2 random questions per section, total 10
-    function getQuizQuestions() {
-      let quizQs = [];
-      Object.keys(questionBank).forEach(section => {
-        let arr = shuffle([...questionBank[section]]);
-        quizQs = quizQs.concat(arr.slice(0, 2).map(q => ({...q, section})));
-      });
-      return shuffle(quizQs);
-    }
+regions = [
+    {"name": "North India"},
+    {"name": "South India"},
+    {"name": "East India"},
+    {"name": "West India"},
+    {"name": "Central India"},
+    {"name": "Northeast India"}
+]
 
-    // Render quiz from given questions
-    function renderQuizFromQuestions(questions) {
-      const form = document.getElementById('quizForm');
-      form.innerHTML = '';
-      let sectionGroups = {};
-      questions.forEach((q, idx) => {
-        if (!sectionGroups[q.section]) sectionGroups[q.section] = [];
-        sectionGroups[q.section].push({ ...q, idx });
-      });
-      Object.keys(sectionGroups).forEach(section => {
-        form.innerHTML += `<div class="section-block"><div class="section-title">${section} India</div>`;
-        sectionGroups[section].forEach(qobj => {
-          form.innerHTML += `
-            <div class="question">${qobj.q}</div>
-            <div class="options">
-              ${qobj.opts.map(opt => `
-                <label><input type="radio" name="q${qobj.idx}" value="${opt}"> ${opt}</label>
-              `).join('')}
-            </div>
-          `;
-        });
-        form.innerHTML += `</div>`;
-      });
-      document.getElementById('scorecard').innerHTML = '';
-    }
+all_questions = []
 
-    // Submit logic
-    function submitQuiz() {
-      let quizQuestions = JSON.parse(sessionStorage.getItem('currentQuizQuestions'));
-      let sectionScores = {};
-      quizQuestions.forEach((q, idx) => {
-        if (!sectionScores[q.section]) sectionScores[q.section] = { correct: 0, total: 0 };
-        sectionScores[q.section].total++;
-        let selected = document.querySelector(`input[name="q${idx}"]:checked`);
-        if (selected && selected.value === q.a) sectionScores[q.section].correct++;
-      });
-      // Heatmap and scorecard
-      let heatmapHTML = '<div class="heatmap-row">';
-      let detailsHTML = '';
-      Object.keys(sectionScores).forEach(section => {
-        const { correct, total } = sectionScores[section];
-        let pct = total ? correct / total : 0;
-        let heatClass = pct > 0.8 ? 'heat-high' : pct > 0.4 ? 'heat-mid' : 'heat-low';
-        heatmapHTML += `<span class="heatcell ${heatClass}" title="${section} India">${section[0]}</span>`;
-        detailsHTML += `<div class="score-details">${section} India: <b>${correct} / ${total}</b></div>`;
-      });
-      heatmapHTML += '</div>';
-      document.getElementById('scorecard').innerHTML = `
-        <h3>Section-wise Heatmap</h3>
-        ${heatmapHTML}
-        <div>${detailsHTML}</div>
-      `;
-    }
+def generate_quiz(*args, **kwargs):
+    global all_questions
+    per_region = int(document.getElementById("per_region").value)
+    all_questions = []
+    for region in regions:
+        for i in range(1, per_region+1):
+            q = {
+                "region": region["name"],
+                "question": f"{region['name']} Sample Question {i}",
+                "options": [f"Option A{i}", f"Option B{i}", f"Option C{i}", f"Option D{i}"],
+                "answer": f"Option A{i}"
+            }
+            all_questions.append(q)
+    # Display sample output
+    output = document.getElementById("output")
+    sample = json.dumps(all_questions[:min(5, len(all_questions))], indent=2)
+    output.innerText = f"Generated {len(all_questions)} questions.\\nSample:\\n{sample}"
 
-    // Reset logic: new questions, update sessionStorage, render
-    function resetQuiz() {
-      const quizQuestions = getQuizQuestions();
-      sessionStorage.setItem('currentQuizQuestions', JSON.stringify(quizQuestions));
-      renderQuizFromQuestions(quizQuestions);
-    }
-
-    // On load: use sessionStorage if available, else generate new
-    window.onload = function() {
-      const saved = sessionStorage.getItem('currentQuizQuestions');
-      if (saved) {
-        renderQuizFromQuestions(JSON.parse(saved));
-      } else {
-        resetQuiz();
-      }
-    };
-
-    // Attach event listeners
-    document.getElementById('submitBtn').onclick = submitQuiz;
-    document.getElementById('resetBtn').onclick = resetQuiz;
-  </script>
+def download_json(*args, **kwargs):
+    if not all_questions:
+        generate_quiz()
+    json_str = json.dumps(all_questions, indent=2)
+    blob = Blob.new([json_str], { "type": "application/json" })
+    url = URL.createObjectURL(blob)
+    link = document.createElement("a")
+    link.href = url
+    link.download = "indian_geography_questions.json"
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+    URL.revokeObjectURL(url)
+    </py-script>
 </body>
 </html>
