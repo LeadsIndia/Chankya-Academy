@@ -1,160 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="UTF-8">
-  <title>Indian Geography Quiz</title>
-  <style>
-    body { font-family: Arial, sans-serif; background: #f4f7fa; }
-    .container { max-width: 800px; margin: 32px auto; background: #fff; border-radius: 10px; box-shadow: 0 2px 12px #0002; padding: 32px; }
-    h2 { text-align: center; }
-    .section-block { margin: 24px 0 16px 0; }
-    .section-title { font-size: 1.15em; color: #2c3e50; font-weight: bold; margin-bottom: 10px; }
-    .question { margin: 12px 0 6px 0; }
-    .options label { display: block; margin: 4px 0; }
-    .actions { text-align: center; margin: 20px 0; }
-    button { padding: 10px 24px; border: none; border-radius: 6px; background: #2980b9; color: #fff; font-size: 1em; margin: 0 10px; cursor: pointer; }
-    button:hover { background: #1c5d85; }
-    #scorecard { margin-top: 32px; }
-    .heatmap-row { margin: 12px 0; }
-    .heatcell {
-      display: inline-block;
-      width: 56px;
-      height: 56px;
-      line-height: 56px;
-      margin: 0 8px 0 0;
-      border-radius: 8px;
-      color: #fff;
-      font-size: 1.2em;
-      font-weight: bold;
-      text-align: center;
-      vertical-align: middle;
-      box-shadow: 0 1px 4px #0001;
-    }
-    .heat-low { background: #e74c3c; }
-    .heat-mid { background: #f39c12; }
-    .heat-high { background: #27ae60; }
-    .score-details { margin: 8px 0 0 0; color: #2c3e50; }
-  </style>
+  <title>Indian Geography Quiz (Randomized)</title>
 </head>
 <body>
-  <div class="container">
-    <h2>Indian Geography Quiz</h2>
-    <form id="quizForm"></form>
-    <div class="actions">
-      <button type="button" onclick="submitQuiz()">Submit</button>
-      <button type="button" onclick="resetQuiz()">Reset</button>
-    </div>
-    <div id="scorecard"></div>
-  </div>
+  <h1>Indian Geography Quiz (Randomized)</h1>
+  <button onclick="generateQuiz()">New Quiz</button>
+  <form id="quizForm"></form>
+  <button onclick="submitQuiz()">Submit</button>
+  <div id="result"></div>
+
   <script>
-    // Sectioned question bank
-    const questionBank = {
-      'North': [
-        { q: 'Capital of Uttarakhand?', a: 'Dehradun', opts: ['Dehradun', 'Shimla', 'Lucknow', 'Chandigarh'] },
-        { q: 'River through Delhi?', a: 'Yamuna', opts: ['Yamuna', 'Ganga', 'Brahmaputra', 'Godavari'] },
-        { q: 'Mountain range in J&K?', a: 'Himalayas', opts: ['Himalayas', 'Aravalli', 'Vindhya', 'Satpura'] }
-      ],
-      'South': [
-        { q: "India's 'Silicon Valley'?", a: 'Bengaluru', opts: ['Bengaluru', 'Chennai', 'Hyderabad', 'Kochi'] },
-        { q: 'Longest river in South?', a: 'Godavari', opts: ['Godavari', 'Krishna', 'Kaveri', 'Periyar'] },
-        { q: 'State famous for backwaters?', a: 'Kerala', opts: ['Kerala', 'Tamil Nadu', 'Karnataka', 'Andhra Pradesh'] }
-      ],
-      'East': [
-        { q: 'Capital of West Bengal?', a: 'Kolkata', opts: ['Kolkata', 'Patna', 'Bhubaneswar', 'Ranchi'] },
-        { q: 'River forming Sundarbans?', a: 'Ganga', opts: ['Ganga', 'Brahmaputra', 'Mahanadi', 'Subarnarekha'] },
-        { q: 'Largest tea producing state?', a: 'Assam', opts: ['Assam', 'West Bengal', 'Odisha', 'Jharkhand'] }
-      ],
-      'West': [
-        { q: "India's Financial Capital?", a: 'Mumbai', opts: ['Mumbai', 'Ahmedabad', 'Pune', 'Surat'] },
-        { q: 'Gir Forest is famous for?', a: 'Lion', opts: ['Lion', 'Tiger', 'Elephant', 'Leopard'] },
-        { q: 'Desert in Rajasthan?', a: 'Thar', opts: ['Thar', 'Kutch', 'Gobi', 'Sahara'] }
-      ],
-      'Central': [
-        { q: 'Capital of MP?', a: 'Bhopal', opts: ['Bhopal', 'Indore', 'Jabalpur', 'Gwalior'] },
-        { q: 'River in Kanha National Park?', a: 'Narmada', opts: ['Narmada', 'Son', 'Tapti', 'Godavari'] },
-        { q: 'State of Khajuraho temples?', a: 'Madhya Pradesh', opts: ['Madhya Pradesh', 'Chhattisgarh', 'Maharashtra', 'Odisha'] }
-      ]
-    };
+    // Sample data: Replace with your full 500-question array
+    const allQuestions = [
+      // North India (Sample)
+      {region: "North India", question: "Q1 North", options: ["A","B","C","D"], answer: "A"},
+      {region: "North India", question: "Q2 North", options: ["A","B","C","D"], answer: "B"},
+      {region: "North India", question: "Q3 North", options: ["A","B","C","D"], answer: "C"},
+      {region: "North India", question: "Q4 North", options: ["A","B","C","D"], answer: "D"},
+      {region: "North India", question: "Q5 North", options: ["A","B","C","D"], answer: "A"},
+      // South India (Sample)
+      {region: "South India", question: "Q1 South", options: ["A","B","C","D"], answer: "A"},
+      {region: "South India", question: "Q2 South", options: ["A","B","C","D"], answer: "B"},
+      {region: "South India", question: "Q3 South", options: ["A","B","C","D"], answer: "C"},
+      {region: "South India", question: "Q4 South", options: ["A","B","C","D"], answer: "D"},
+      {region: "South India", question: "Q5 South", options: ["A","B","C","D"], answer: "A"},
+      // East India (Sample)
+      {region: "East India", question: "Q1 East", options: ["A","B","C","D"], answer: "A"},
+      {region: "East India", question: "Q2 East", options: ["A","B","C","D"], answer: "B"},
+      {region: "East India", question: "Q3 East", options: ["A","B","C","D"], answer: "C"},
+      {region: "East India", question: "Q4 East", options: ["A","B","C","D"], answer: "D"},
+      {region: "East India", question: "Q5 East", options: ["A","B","C","D"], answer: "A"},
+      // West India (Sample)
+      {region: "West India", question: "Q1 West", options: ["A","B","C","D"], answer: "A"},
+      {region: "West India", question: "Q2 West", options: ["A","B","C","D"], answer: "B"},
+      {region: "West India", question: "Q3 West", options: ["A","B","C","D"], answer: "C"},
+      {region: "West India", question: "Q4 West", options: ["A","B","C","D"], answer: "D"},
+      {region: "West India", question: "Q5 West", options: ["A","B","C","D"], answer: "A"},
+      // Central India (Sample)
+      {region: "Central India", question: "Q1 Central", options: ["A","B","C","D"], answer: "A"},
+      {region: "Central India", question: "Q2 Central", options: ["A","B","C","D"], answer: "B"},
+      {region: "Central India", question: "Q3 Central", options: ["A","B","C","D"], answer: "C"},
+      {region: "Central India", question: "Q4 Central", options: ["A","B","C","D"], answer: "D"},
+      {region: "Central India", question: "Q5 Central", options: ["A","B","C","D"], answer: "A"},
+      // Northeast India (Sample)
+      {region: "Northeast India", question: "Q1 NE", options: ["A","B","C","D"], answer: "A"},
+      {region: "Northeast India", question: "Q2 NE", options: ["A","B","C","D"], answer: "B"},
+      {region: "Northeast India", question: "Q3 NE", options: ["A","B","C","D"], answer: "C"},
+      {region: "Northeast India", question: "Q4 NE", options: ["A","B","C","D"], answer: "D"},
+      {region: "Northeast India", question: "Q5 NE", options: ["A","B","C","D"], answer: "A"}
+    ];
 
-    // Generate 2 questions per section (total 10)
-    function getQuizQuestions() {
-      let quizQs = [];
-      Object.keys(questionBank).forEach(section => {
-        let arr = [...questionBank[section]];
-        for (let i = arr.length - 1; i > 0; i--) {
-          let j = Math.floor(Math.random() * (i + 1));
-          [arr[i], arr[j]] = [arr[j], arr[i]];
-        }
-        quizQs = quizQs.concat(arr.slice(0, 2).map(q => ({...q, section})));
-      });
-      // Shuffle all questions
-      for (let i = quizQs.length - 1; i > 0; i--) {
-        let j = Math.floor(Math.random() * (i + 1));
-        [quizQs[i], quizQs[j]] = [quizQs[j], quizQs[i]];
+    // Group questions by region
+    const regions = ["North India", "South India", "East India", "West India", "Central India", "Northeast India"];
+    let questionsByRegion = {};
+    regions.forEach(region => {
+      questionsByRegion[region] = allQuestions.filter(q => q.region === region);
+    });
+
+    let previousQuiz = [];
+
+    // Utility: Shuffle an array
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
       }
-      return quizQs;
+      return array;
     }
 
-    let quizQuestions = [];
-    function renderQuiz() {
-      quizQuestions = getQuizQuestions();
-      const form = document.getElementById('quizForm');
-      form.innerHTML = '';
-      let sectionGroups = {};
-      quizQuestions.forEach((q, idx) => {
-        if (!sectionGroups[q.section]) sectionGroups[q.section] = [];
-        sectionGroups[q.section].push({ ...q, idx });
-      });
-      Object.keys(sectionGroups).forEach(section => {
-        form.innerHTML += `<div class="section-block"><div class="section-title">${section} India</div>`;
-        sectionGroups[section].forEach(qobj => {
-          form.innerHTML += `
-            <div class="question">${qobj.q}</div>
-            <div class="options">
-              ${qobj.opts.map(opt => `
-                <label><input type="radio" name="q${qobj.idx}" value="${opt}"> ${opt}</label>
-              `).join('')}
-            </div>
-          `;
-        });
-        form.innerHTML += `</div>`;
-      });
-      document.getElementById('scorecard').innerHTML = '';
-    }
+    // Select 4 random questions per region, avoiding repeats from previousQuiz
+    function selectQuiz() {
+      let newQuiz = [];
+      let repeats = 0;
+      let previousSet = new Set(previousQuiz.map(q => q.question));
+      regions.forEach(region => {
+        let regionQuestions = questionsByRegion[region].slice(); // clone
+        shuffle(regionQuestions);
 
-    function submitQuiz() {
-      let sectionScores = {};
-      quizQuestions.forEach((q, idx) => {
-        if (!sectionScores[q.section]) sectionScores[q.section] = { correct: 0, total: 0 };
-        sectionScores[q.section].total++;
-        let selected = document.querySelector(`input[name="q${idx}"]:checked`);
-        if (selected && selected.value === q.a) sectionScores[q.section].correct++;
-      });
-
-      // Heatmap and scorecard
-      let heatmapHTML = '<div class="heatmap-row">';
-      let detailsHTML = '';
-      Object.keys(sectionScores).forEach(section => {
-        const { correct, total } = sectionScores[section];
-        let pct = total ? correct / total : 0;
-        let heatClass = pct > 0.8 ? 'heat-high' : pct > 0.4 ? 'heat-mid' : 'heat-low';
-        heatmapHTML += `<span class="heatcell ${heatClass}" title="${section} India">${section[0]}</span>`;
-        detailsHTML += `<div class="score-details">${section} India: <b>${correct} / ${total}</b></div>`;
-      });
-      heatmapHTML += '</div>';
-      document.getElementById('scorecard').innerHTML = `
-        <h3>Section-wise Heatmap</h3>
-        ${heatmapHTML}
-        <div>${detailsHTML}</div>
-      `;
-    }
-
-    function resetQuiz() {
-      renderQuiz();
-    }
-
-    // Initial load
-    renderQuiz();
-  </script>
-</body>
-</html>
+        // Try to select 4 questions with minimal repeats
+        let selected = [];
+        for (let q of regionQuestions) {
+          if (selected.length < 4) {
+            if (!previousSet.has(q.question) || repeats >=
