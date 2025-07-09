@@ -50,4 +50,87 @@
       // Central India
       { section: "Central", question: "What is the capital of Madhya Pradesh?", options: ["Bhopal", "Indore", "Jabalpur", "Gwalior"], answer: "Bhopal" },
       { section: "Central", question: "Which river flows through Kanha National Park?", options: ["Narmada", "Son", "Tapti", "Godavari"], answer: "Narmada" },
-      { section: "Central", question: "Which state
+      { section: "Central", question: "Which state is famous for Khajuraho temples?", options: ["Madhya Pradesh", "Chhattisgarh", "Maharashtra", "Odisha"], answer: "Madhya Pradesh" }
+    ];
+
+    // --- Utility Functions ---
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+
+    function getRandomQuestions(n) {
+      const questions = [...questionBank];
+      shuffleArray(questions);
+      return questions.slice(0, n);
+    }
+
+    // --- Quiz Logic ---
+    let currentQuestions = [];
+    let sectionList = [];
+    function renderQuiz() {
+      currentQuestions = getRandomQuestions(10);
+      sectionList = [...new Set(currentQuestions.map(q => q.section))];
+      const form = document.getElementById('quiz-form');
+      form.innerHTML = '';
+      currentQuestions.forEach((q, idx) => {
+        const optionsHtml = q.options
+          .map(opt => `<label><input type="radio" name="q${idx}" value="${opt}"> ${opt}</label>`)
+          .join('');
+        form.innerHTML += `
+          <div class="question">${idx + 1}. [${q.section}] ${q.question}</div>
+          <div class="options">${optionsHtml}</div>
+        `;
+      });
+      document.getElementById('results').innerHTML = '';
+      document.getElementById('heatmap').innerHTML = '';
+    }
+
+    function scoreQuiz() {
+      const form = document.getElementById('quiz-form');
+      const results = {};
+      sectionList.forEach(sec => results[sec] = { total: 0, correct: 0 });
+      currentQuestions.forEach((q, idx) => {
+        results[q.section].total++;
+        const radios = form.querySelectorAll(`input[name="q${idx}"]`);
+        let selected = '';
+        radios.forEach(r => { if (r.checked) selected = r.value; });
+        if (selected === q.answer) results[q.section].correct++;
+      });
+      return results;
+    }
+
+    function showResults() {
+      const scores = scoreQuiz();
+      let html = '<h3>Section-wise Scores:</h3>';
+      let heatmap = '';
+      sectionList.forEach(sec => {
+        const { total, correct } = scores[sec];
+        html += `<div class="section-title">${sec} India: ${correct} / ${total}</div>`;
+        // Heat color: red (0-33%), yellow (34-66%), green (67-100%)
+        let heatClass = 'heat-low';
+        const pct = total ? correct / total : 0;
+        if (pct > 0.66) heatClass = 'heat-high';
+        else if (pct > 0.33) heatClass = 'heat-mid';
+        heatmap += `<div class="heat-cell ${heatClass}" title="${sec} India: ${correct}/${total}">${sec[0]}</div>`;
+      });
+      document.getElementById('results').innerHTML = html;
+      document.getElementById('heatmap').innerHTML = `<div>${heatmap}</div>`;
+    }
+
+    document.getElementById('submit-btn').onclick = function(e) {
+      e.preventDefault();
+      showResults();
+    };
+    document.getElementById('reset-btn').onclick = function(e) {
+      e.preventDefault();
+      renderQuiz();
+    };
+
+    // --- Initialize ---
+    renderQuiz();
+  </script>
+</body>
+</html>
