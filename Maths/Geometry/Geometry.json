@@ -3,7 +3,7 @@
     "question": "What is the area of a circle with a diameter of 10 cm?",
     "options": ["25π cm²", "50π cm²", "100π cm²", "78.54 cm²"],
     "answer": "25π cm²",
-    "tip": "Area = π × (radius)². Radius is half the diameter." 
+    "tip": "Area = π × (radius)². Radius is half the diameter."
   },
   {
     "question": "How many edges does a rectangular prism have?",
@@ -27,13 +27,13 @@
     "question": "What is the length of the hypotenuse in a right triangle with legs 3 cm and 4 cm?",
     "options": ["5 cm", "6 cm", "7 cm", "8 cm"],
     "answer": "5 cm",
-    "tip": "Use the Pythagorean theorem: \(a^2 + b^2 = c^2\)[5]."
+    "tip": "Use the Pythagorean theorem: a^2 + b^2 = c^2."
   },
   {
     "question": "What is the area of a triangle with base 6 m and height 4 m?",
     "options": ["10 m²", "12 m²", "14 m²", "16 m²"],
     "answer": "12 m²",
-    "tip": "Area = ½ × base × height[5]."
+    "tip": "Area = ½ × base × height."
   },
   {
     "question": "How many faces does a cube have?",
@@ -51,37 +51,37 @@
     "question": "What is the area of a triangle with vertices (3, 5), (-2, 0), and (6, 4)?",
     "options": ["8 unit²", "10 unit²", "12 unit²", "14 unit²"],
     "answer": "10 unit²",
-    "tip": "Use the coordinate geometry formula for area of a triangle[3]."
+    "tip": "Use the coordinate geometry formula for area of a triangle."
   },
   {
     "question": "What is the formula for the volume of a cylinder?",
     "options": ["πr²h", "2πrh", "πd²h", "πr³"],
     "answer": "πr²h",
-    "tip": "Volume = π × (radius)² × height[2]."
+    "tip": "Volume = π × (radius)² × height."
   },
   {
     "question": "If two lines are equidistant and never meet, they are called:",
     "options": ["Intersecting", "Parallel", "Perpendicular", "Transversal"],
     "answer": "Parallel",
-    "tip": "Parallel lines never meet, no matter how far they are extended[4]."
+    "tip": "Parallel lines never meet, no matter how far they are extended."
   },
   {
     "question": "What is the area of a triangle with sides 12 cm, 12 cm, and 9 cm?",
     "options": ["36 cm²", "48 cm²", "50 cm²", "54 cm²"],
     "answer": "50 cm²",
-    "tip": "Use Heron's formula for area of a triangle with given sides[2]."
+    "tip": "Use Heron's formula for area of a triangle with given sides."
   },
   {
     "question": "The distance between the centers of two circles with radii 8 cm and 5 cm is 20 cm. What is the length of the transverse common tangent?",
     "options": ["15 cm", "16 cm", "17 cm", "18 cm"],
     "answer": "15 cm",
-    "tip": "Use the formula: √[d² - (r1 + r2)²][2]."
+    "tip": "Use the formula: sqrt[d² - (r1 + r2)²]."
   },
   {
     "question": "What is the area of a circle with radius 5 cm?",
     "options": ["10π cm²", "15π cm²", "25π cm²", "50π cm²"],
     "answer": "25π cm²",
-    "tip": "Area = π × (radius)²[5]."
+    "tip": "Area = π × (radius)²."
   },
   {
     "question": "A triangle has angles 30°, 60°, and 90°. What is the ratio of its sides?",
@@ -93,19 +93,19 @@
     "question": "What is the area of a circle with diameter 16 cm?",
     "options": ["64π cm²", "128π cm²", "256π cm²", "32π cm²"],
     "answer": "64π cm²",
-    "tip": "Radius = 8 cm, Area = π × 8²[1][4]."
+    "tip": "Radius = 8 cm, Area = π × 8²."
   },
   {
     "question": "If the circumference of a circle is 30 cm, what is its area?",
     "options": ["225 cm²", "100 cm²", "30 cm²", "60 cm²"],
     "answer": "225 cm²",
-    "tip": "Find radius from circumference, then use area formula[1]."
+    "tip": "Find radius from circumference, then use area formula."
   },
   {
     "question": "What is the area of a triangle with base 8 and height 5?",
     "options": ["20", "30", "35", "40"],
     "answer": "20",
-    "tip": "Area = ½ × base × height[1]."
+    "tip": "Area = ½ × base × height."
   },
   {
     "question": "How many diagonals does a hexagon have?",
@@ -117,13 +117,13 @@
     "question": "What is the sum of the measures of the interior angles of a hexagon?",
     "options": ["540°", "720°", "900°", "1080°"],
     "answer": "720°",
-    "tip": "Sum = (n-2) × 180°, n = 6[1]."
+    "tip": "Sum = (n-2) × 180°, n = 6."
   },
   {
     "question": "What is the length of the shortest side in a 30-60-90 triangle if the hypotenuse is 6?",
     "options": ["2", "3", "4", "5"],
     "answer": "3",
-    "tip": "Shortest side = hypotenuse ÷ 2[1]."
+    "tip": "Shortest side = hypotenuse ÷ 2."
   },
   {
     "question": "What is the formula for the area of a triangle given its vertices (x1, y1), (x2, y2), (x3, y3)?",
@@ -134,19 +134,19 @@
       "x1y2 + x2y3 + x3y1"
     ],
     "answer": "½[x1(y2–y3) + x2(y3–y1) + x3(y1–y2)]",
-    "tip": "This is the standard coordinate geometry formula[3]."
+    "tip": "This is the standard coordinate geometry formula."
   },
   {
     "question": "A cube has a side length of 5 cm. What is its volume?",
     "options": ["25 cm³", "50 cm³", "100 cm³", "125 cm³"],
     "answer": "125 cm³",
-    "tip": "Volume = side³[5]."
+    "tip": "Volume = side³."
   },
   {
     "question": "What is the area of a triangle with sides 7 cm, 8 cm, and 9 cm?",
     "options": ["26.83 cm²", "27.81 cm²", "28.85 cm²", "29.81 cm²"],
     "answer": "26.83 cm²",
-    "tip": "Use Heron's formula: s = (a+b+c)/2, Area = √[s(s-a)(s-b)(s-c)]."
+    "tip": "Use Heron's formula: s = (a+b+c)/2, Area = sqrt[s(s-a)(s-b)(s-c)]."
   },
   {
     "question": "The perimeter of a square with side 11 cm is:",
