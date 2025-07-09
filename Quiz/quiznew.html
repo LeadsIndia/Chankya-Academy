@@ -82,4 +82,33 @@
         { q: 'River in Kanha National Park?', a: 'Narmada', opts: ['Narmada', 'Son', 'Tapti', 'Godavari'] },
         { q: 'State of Khajuraho temples?', a: 'Madhya Pradesh', opts: ['Madhya Pradesh', 'Chhattisgarh', 'Maharashtra', 'Odisha'] },
         { q: 'Which city is known as the Heart of India?', a: 'Nagpur', opts: ['Nagpur', 'Bhopal', 'Raipur', 'Jabalpur'] },
-        { q: 'Which state is famous for Marble Rocks?', a: 'Madhya Pradesh', opts: ['Madhya Pradesh
+        { q: 'Which state is famous for Marble Rocks?', a: 'Madhya Pradesh', opts: ['Madhya Pradesh', 'Chhattisgarh', 'Uttar Pradesh', 'Bihar'] }
+      ]
+    };
+
+    // Utility: shuffle array
+    function shuffle(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    // Get 2 random questions per section, total 10
+    function getQuizQuestions() {
+      let quizQs = [];
+      Object.keys(questionBank).forEach(section => {
+        let arr = shuffle([...questionBank[section]]);
+        quizQs = quizQs.concat(arr.slice(0, 2).map(q => ({...q, section})));
+      });
+      return shuffle(quizQs);
+    }
+
+    // Render quiz from given questions
+    function renderQuizFromQuestions(questions) {
+      const form = document.getElementById('quizForm');
+      form.innerHTML = '';
+      let sectionGroups = {};
+      questions.forEach((q, idx) => {
+        if (!sectionGroups[q.section]) sectionGroups[q.section
