@@ -4,133 +4,82 @@
   <meta charset="UTF-8">
   <title>Indian Geography Quiz</title>
   <style>
-    body { font-family: Arial, sans-serif; background: #f0f4f8; }
-    .quiz-container { background: #fff; max-width: 600px; margin: 40px auto; padding: 24px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
-    .question { font-weight: bold; margin-bottom: 8px; }
-    .options { margin-bottom: 16px; }
-    .options label { display: block; margin: 6px 0; }
-    #heatmap { margin-top: 24px; }
-    .heat-cell { display: inline-block; width: 40px; height: 40px; line-height: 40px; text-align: center; margin: 2px; border-radius: 4px; color: #fff; font-weight: bold; }
+    body { font-family: Arial, sans-serif; background: #f4f7fa; }
+    .container { max-width: 800px; margin: 32px auto; background: #fff; border-radius: 10px; box-shadow: 0 2px 12px #0002; padding: 32px; }
+    h2 { text-align: center; }
+    .section-block { margin: 24px 0 16px 0; }
+    .section-title { font-size: 1.15em; color: #2c3e50; font-weight: bold; margin-bottom: 10px; }
+    .question { margin: 12px 0 6px 0; }
+    .options label { display: block; margin: 4px 0; }
+    .actions { text-align: center; margin: 20px 0; }
+    button { padding: 10px 24px; border: none; border-radius: 6px; background: #2980b9; color: #fff; font-size: 1em; margin: 0 10px; cursor: pointer; }
+    button:hover { background: #1c5d85; }
+    #scorecard { margin-top: 32px; }
+    .heatmap-row { margin: 12px 0; }
+    .heatcell {
+      display: inline-block;
+      width: 56px;
+      height: 56px;
+      line-height: 56px;
+      margin: 0 8px 0 0;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 1.2em;
+      font-weight: bold;
+      text-align: center;
+      vertical-align: middle;
+      box-shadow: 0 1px 4px #0001;
+    }
     .heat-low { background: #e74c3c; }
-    .heat-mid { background: #f1c40f; }
-    .heat-high { background: #2ecc71; }
-    .section-title { margin: 18px 0 6px 0; font-size: 1.1em; font-weight: bold; }
-    button { margin: 10px 6px 0 0; padding: 8px 18px; border: none; border-radius: 4px; background: #3498db; color: #fff; font-size: 1em; cursor: pointer; }
-    button:hover { background: #217dbb; }
+    .heat-mid { background: #f39c12; }
+    .heat-high { background: #27ae60; }
+    .score-details { margin: 8px 0 0 0; color: #2c3e50; }
   </style>
 </head>
 <body>
-  <div class="quiz-container">
+  <div class="container">
     <h2>Indian Geography Quiz</h2>
-    <form id="quiz-form"></form>
-    <button id="submit-btn">Submit</button>
-    <button id="reset-btn">Reset</button>
-    <div id="results"></div>
-    <div id="heatmap"></div>
+    <form id="quizForm"></form>
+    <div class="actions">
+      <button type="button" onclick="submitQuiz()">Submit</button>
+      <button type="button" onclick="resetQuiz()">Reset</button>
+    </div>
+    <div id="scorecard"></div>
   </div>
   <script>
-    // --- Question Bank ---
-    const questionBank = [
-      // North India
-      { section: "North", question: "What is the capital of Uttarakhand?", options: ["Dehradun", "Shimla", "Lucknow", "Chandigarh"], answer: "Dehradun" },
-      { section: "North", question: "Which river flows through Delhi?", options: ["Yamuna", "Ganga", "Brahmaputra", "Godavari"], answer: "Yamuna" },
-      { section: "North", question: "Which mountain range is in Jammu & Kashmir?", options: ["Himalayas", "Aravalli", "Vindhya", "Satpura"], answer: "Himalayas" },
-      // South India
-      { section: "South", question: "Which city is known as the 'Silicon Valley of India'?", options: ["Bengaluru", "Chennai", "Hyderabad", "Kochi"], answer: "Bengaluru" },
-      { section: "South", question: "Which is the longest river in South India?", options: ["Godavari", "Krishna", "Kaveri", "Periyar"], answer: "Godavari" },
-      { section: "South", question: "Which state is famous for backwaters?", options: ["Kerala", "Tamil Nadu", "Karnataka", "Andhra Pradesh"], answer: "Kerala" },
-      // East India
-      { section: "East", question: "What is the capital of West Bengal?", options: ["Kolkata", "Patna", "Bhubaneswar", "Ranchi"], answer: "Kolkata" },
-      { section: "East", question: "Which river forms the Sundarbans delta?", options: ["Ganga", "Brahmaputra", "Mahanadi", "Subarnarekha"], answer: "Ganga" },
-      { section: "East", question: "Which is the largest tea producing state?", options: ["Assam", "West Bengal", "Odisha", "Jharkhand"], answer: "Assam" },
-      // West India
-      { section: "West", question: "Which city is known as the 'Financial Capital of India'?", options: ["Mumbai", "Ahmedabad", "Pune", "Surat"], answer: "Mumbai" },
-      { section: "West", question: "Gir Forest is famous for which animal?", options: ["Lion", "Tiger", "Elephant", "Leopard"], answer: "Lion" },
-      { section: "West", question: "Which desert is located in Rajasthan?", options: ["Thar", "Kutch", "Gobi", "Sahara"], answer: "Thar" },
-      // Central India
-      { section: "Central", question: "What is the capital of Madhya Pradesh?", options: ["Bhopal", "Indore", "Jabalpur", "Gwalior"], answer: "Bhopal" },
-      { section: "Central", question: "Which river flows through Kanha National Park?", options: ["Narmada", "Son", "Tapti", "Godavari"], answer: "Narmada" },
-      { section: "Central", question: "Which state is famous for Khajuraho temples?", options: ["Madhya Pradesh", "Chhattisgarh", "Maharashtra", "Odisha"], answer: "Madhya Pradesh" }
-    ];
-
-    // --- Utility Functions ---
-    function shuffleArray(array) {
-      for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-      }
-    }
-
-    function getRandomQuestions(n) {
-      const questions = [...questionBank];
-      shuffleArray(questions);
-      return questions.slice(0, n);
-    }
-
-    // --- Quiz Logic ---
-    let currentQuestions = [];
-    let sectionList = [];
-    function renderQuiz() {
-      currentQuestions = getRandomQuestions(10);
-      sectionList = [...new Set(currentQuestions.map(q => q.section))];
-      const form = document.getElementById('quiz-form');
-      form.innerHTML = '';
-      currentQuestions.forEach((q, idx) => {
-        const optionsHtml = q.options
-          .map(opt => `<label><input type="radio" name="q${idx}" value="${opt}"> ${opt}</label>`)
-          .join('');
-        form.innerHTML += `
-          <div class="question">${idx + 1}. [${q.section}] ${q.question}</div>
-          <div class="options">${optionsHtml}</div>
-        `;
-      });
-      document.getElementById('results').innerHTML = '';
-      document.getElementById('heatmap').innerHTML = '';
-    }
-
-    function scoreQuiz() {
-      const form = document.getElementById('quiz-form');
-      const results = {};
-      sectionList.forEach(sec => results[sec] = { total: 0, correct: 0 });
-      currentQuestions.forEach((q, idx) => {
-        results[q.section].total++;
-        const radios = form.querySelectorAll(`input[name="q${idx}"]`);
-        let selected = '';
-        radios.forEach(r => { if (r.checked) selected = r.value; });
-        if (selected === q.answer) results[q.section].correct++;
-      });
-      return results;
-    }
-
-    function showResults() {
-      const scores = scoreQuiz();
-      let html = '<h3>Section-wise Scores:</h3>';
-      let heatmap = '';
-      sectionList.forEach(sec => {
-        const { total, correct } = scores[sec];
-        html += `<div class="section-title">${sec} India: ${correct} / ${total}</div>`;
-        // Heat color: red (0-33%), yellow (34-66%), green (67-100%)
-        let heatClass = 'heat-low';
-        const pct = total ? correct / total : 0;
-        if (pct > 0.66) heatClass = 'heat-high';
-        else if (pct > 0.33) heatClass = 'heat-mid';
-        heatmap += `<div class="heat-cell ${heatClass}" title="${sec} India: ${correct}/${total}">${sec[0]}</div>`;
-      });
-      document.getElementById('results').innerHTML = html;
-      document.getElementById('heatmap').innerHTML = `<div>${heatmap}</div>`;
-    }
-
-    document.getElementById('submit-btn').onclick = function(e) {
-      e.preventDefault();
-      showResults();
-    };
-    document.getElementById('reset-btn').onclick = function(e) {
-      e.preventDefault();
-      renderQuiz();
-    };
-
-    // --- Initialize ---
-    renderQuiz();
-  </script>
-</body>
-</html>
+    // Sectioned question bank (expand as needed for less repetition)
+    const questionBank = {
+      'North': [
+        { q: 'Capital of Uttarakhand?', a: 'Dehradun', opts: ['Dehradun', 'Shimla', 'Lucknow', 'Chandigarh'] },
+        { q: 'River through Delhi?', a: 'Yamuna', opts: ['Yamuna', 'Ganga', 'Brahmaputra', 'Godavari'] },
+        { q: 'Mountain range in J&K?', a: 'Himalayas', opts: ['Himalayas', 'Aravalli', 'Vindhya', 'Satpura'] },
+        { q: 'Which city is known as the Pink City?', a: 'Jaipur', opts: ['Jaipur', 'Agra', 'Lucknow', 'Amritsar'] },
+        { q: 'Which state shares border with China?', a: 'Himachal Pradesh', opts: ['Himachal Pradesh', 'Punjab', 'Haryana', 'Delhi'] }
+      ],
+      'South': [
+        { q: "India's 'Silicon Valley'?", a: 'Bengaluru', opts: ['Bengaluru', 'Chennai', 'Hyderabad', 'Kochi'] },
+        { q: 'Longest river in South?', a: 'Godavari', opts: ['Godavari', 'Krishna', 'Kaveri', 'Periyar'] },
+        { q: 'State famous for backwaters?', a: 'Kerala', opts: ['Kerala', 'Tamil Nadu', 'Karnataka', 'Andhra Pradesh'] },
+        { q: 'Which city is called the Queen of the Arabian Sea?', a: 'Kochi', opts: ['Kochi', 'Chennai', 'Visakhapatnam', 'Mangalore'] },
+        { q: 'Which state has the highest coastline in South?', a: 'Andhra Pradesh', opts: ['Andhra Pradesh', 'Kerala', 'Tamil Nadu', 'Karnataka'] }
+      ],
+      'East': [
+        { q: 'Capital of West Bengal?', a: 'Kolkata', opts: ['Kolkata', 'Patna', 'Bhubaneswar', 'Ranchi'] },
+        { q: 'River forming Sundarbans?', a: 'Ganga', opts: ['Ganga', 'Brahmaputra', 'Mahanadi', 'Subarnarekha'] },
+        { q: 'Largest tea producing state?', a: 'Assam', opts: ['Assam', 'West Bengal', 'Odisha', 'Jharkhand'] },
+        { q: 'Which state is famous for Jagannath Temple?', a: 'Odisha', opts: ['Odisha', 'Bihar', 'Jharkhand', 'West Bengal'] },
+        { q: 'Which city is called the Steel City of India?', a: 'Jamshedpur', opts: ['Jamshedpur', 'Durgapur', 'Bokaro', 'Rourkela'] }
+      ],
+      'West': [
+        { q: "India's Financial Capital?", a: 'Mumbai', opts: ['Mumbai', 'Ahmedabad', 'Pune', 'Surat'] },
+        { q: 'Gir Forest is famous for?', a: 'Lion', opts: ['Lion', 'Tiger', 'Elephant', 'Leopard'] },
+        { q: 'Desert in Rajasthan?', a: 'Thar', opts: ['Thar', 'Kutch', 'Gobi', 'Sahara'] },
+        { q: 'Which city is known as the City of Lakes?', a: 'Udaipur', opts: ['Udaipur', 'Jaipur', 'Bhopal', 'Surat'] },
+        { q: 'Which state is famous for Garba dance?', a: 'Gujarat', opts: ['Gujarat', 'Maharashtra', 'Rajasthan', 'Goa'] }
+      ],
+      'Central': [
+        { q: 'Capital of MP?', a: 'Bhopal', opts: ['Bhopal', 'Indore', 'Jabalpur', 'Gwalior'] },
+        { q: 'River in Kanha National Park?', a: 'Narmada', opts: ['Narmada', 'Son', 'Tapti', 'Godavari'] },
+        { q: 'State of Khajuraho temples?', a: 'Madhya Pradesh', opts: ['Madhya Pradesh', 'Chhattisgarh', 'Maharashtra', 'Odisha'] },
+        { q: 'Which city is known as the Heart of India?', a: 'Nagpur', opts: ['Nagpur', 'Bhopal', 'Raipur', 'Jabalpur'] },
+        { q: 'Which state is famous for Marble Rocks?', a: 'Madhya Pradesh', opts: ['Madhya Pradesh
