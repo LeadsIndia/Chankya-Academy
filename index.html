@@ -2,20 +2,70 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <title>Indian Geography Quiz - Chankya Academy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Indian Geography Quiz</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    body { font-family: sans-serif; background: #f5f5f5; margin: 0; padding: 0; }
+    .container { max-width: 600px; margin: 2em auto; background: #fff; padding: 2em 1.5em; border-radius: 8px; box-shadow: 0 2px 8px #0001; }
+    h1 { text-align: center; }
+    .question { margin-bottom: 1.2em; padding: 1em; border-radius: 6px; background: #fafafa; }
+    .heatmap-correct { background: #c8e6c9; }
+    .heatmap-wrong { background: #ffcdd2; }
+    .options label { display: block; margin-bottom: 0.5em; }
+    #result { margin: 1.5em 0 0 0; font-size: 1.2em; }
+    #section-result { margin-top: 1.5em; }
+    .heatmap { display: flex; gap: 6px; margin-bottom: 1em; }
+    .heatmap-box { width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 4px; font-weight: bold; }
+    .btn { background: #1976d2; color: #fff; border: none; padding: 0.8em 1.5em; border-radius: 4px; cursor: pointer; font-size: 1em; margin-right: 0.8em; }
+    .btn:disabled { background: #aaa; }
+    footer { margin-top: 2em; text-align: center; font-size: 0.95em; color: #555; }
+    @media (max-width: 600px) {
+      .container { padding: 1em 0.5em; }
+      .heatmap-box { width: 22px; height: 22px; font-size: 0.95em; }
+    }
+  </style>
 </head>
 <body>
-  <div class="quiz-container">
+  <div class="container">
     <h1>Indian Geography Quiz</h1>
-    <div id="quiz"></div>
-    <button id="next-btn">Next Question</button>
+    <form id="quiz-form"></form>
     <div id="result"></div>
+    <div id="heatmap"></div>
+    <div id="section-result"></div>
+    <button class="btn" id="submit-btn" type="button">Submit</button>
+    <button class="btn" id="reset-btn" type="button" style="display:none;">Reset</button>
   </div>
-  <footer style="margin-top:2em;font-size:0.9em;color:#555;">
+  <footer>
     Based on <a href="https://github.com/Chankya-Academy/Quiz-App" target="_blank" rel="noopener">Chankya-Academy/Quiz-App</a>
   </footer>
-  <script src="script.js"></script>
-</body>
-</html>
+  <script>
+    // Quiz question bank: add more as needed!
+    const questions = [
+      {
+        section: "Soil",
+        question: "Which soil is most suitable for cotton cultivation in India?",
+        options: ["Red Soil", "Black Soil", "Laterite Soil", "Alluvial Soil"],
+        answer: 1
+      },
+      {
+        section: "Soil",
+        question: "Red soil is rich in which mineral?",
+        options: ["Calcium", "Iron", "Potassium", "Magnesium"],
+        answer: 1
+      },
+      {
+        section: "Rivers",
+        question: "Which is the longest river in India?",
+        options: ["Ganga", "Yamuna", "Godavari", "Narmada"],
+        answer: 0
+      },
+      {
+        section: "Rivers",
+        question: "Which river forms an estuary in India?",
+        options: ["Ganga", "Yamuna", "Narmada", "Brahmaputra"],
+        answer: 2
+      },
+      {
+        section: "Cities",
+        question: "Which city is known as the Diamond City of India?",
+        options: ["Mumbai", "Surat", "Jaipur", "Hyderabad"],
