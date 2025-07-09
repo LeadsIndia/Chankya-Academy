@@ -299,8 +299,7 @@
     "answer": 0,
     "tip": "Kerala dominates rubber production in India."
   },
-  // --------- Batch 2 (51-100) ---------
-  {
+    {
     "question": "Which Indian state is the largest producer of onions?",
     "options": ["Maharashtra", "Gujarat", "Karnataka", "Madhya Pradesh"],
     "answer": 0,
@@ -594,8 +593,7 @@
     "answer": 1,
     "tip": "Karnataka produces more than two-thirds of India's coffee."
   },
-  // --------- Batch 3 (101-150) ---------
-  {
+   {
     "question": "Which Indian state has no coastline and no international frontiers?",
     "options": ["Madhya Pradesh", "Chhattisgarh", "Jharkhand", "Haryana"],
     "answer": 0,
