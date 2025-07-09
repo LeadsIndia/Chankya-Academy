@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Indian Geography Quiz</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f0f4f8; }
+    .quiz-container { background: #fff; max-width: 600px; margin: 40px auto; padding: 24px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+    .question { font-weight: bold; margin-bottom: 8px; }
+    .options { margin-bottom: 16px; }
+    .options label { display: block; margin: 6px 0; }
+    #heatmap { margin-top: 24px; }
+    .heat-cell { display: inline-block; width: 40px; height: 40px; line-height: 40px; text-align: center; margin: 2px; border-radius: 4px; color: #fff; font-weight: bold; }
+    .heat-low { background: #e74c3c; }
+    .heat-mid { background: #f1c40f; }
+    .heat-high { background: #2ecc71; }
+    .section-title { margin: 18px 0 6px 0; font-size: 1.1em; font-weight: bold; }
+    button { margin: 10px 6px 0 0; padding: 8px 18px; border: none; border-radius: 4px; background: #3498db; color: #fff; font-size: 1em; cursor: pointer; }
+    button:hover { background: #217dbb; }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <h2>Indian Geography Quiz</h2>
+    <form id="quiz-form"></form>
+    <button id="submit-btn">Submit</button>
+    <button id="reset-btn">Reset</button>
+    <div id="results"></div>
+    <div id="heatmap"></div>
+  </div>
+  <script>
+    // --- Question Bank ---
+    const questionBank = [
+      // North India
+      { section: "North", question: "What is the capital of Uttarakhand?", options: ["Dehradun", "Shimla", "Lucknow", "Chandigarh"], answer: "Dehradun" },
+      { section: "North", question: "Which river flows through Delhi?", options: ["Yamuna", "Ganga", "Brahmaputra", "Godavari"], answer: "Yamuna" },
+      { section: "North", question: "Which mountain range is in Jammu & Kashmir?", options: ["Himalayas", "Aravalli", "Vindhya", "Satpura"], answer: "Himalayas" },
+      // South India
+      { section: "South", question: "Which city is known as the 'Silicon Valley of India'?", options: ["Bengaluru", "Chennai", "Hyderabad", "Kochi"], answer: "Bengaluru" },
+      { section: "South", question: "Which is the longest river in South India?", options: ["Godavari", "Krishna", "Kaveri", "Periyar"], answer: "Godavari" },
+      { section: "South", question: "Which state is famous for backwaters?", options: ["Kerala", "Tamil Nadu", "Karnataka", "Andhra Pradesh"], answer: "Kerala" },
+      // East India
+      { section: "East", question: "What is the capital of West Bengal?", options: ["Kolkata", "Patna", "Bhubaneswar", "Ranchi"], answer: "Kolkata" },
+      { section: "East", question: "Which river forms the Sundarbans delta?", options: ["Ganga", "Brahmaputra", "Mahanadi", "Subarnarekha"], answer: "Ganga" },
+      { section: "East", question: "Which is the largest tea producing state?", options: ["Assam", "West Bengal", "Odisha", "Jharkhand"], answer: "Assam" },
+      // West India
+      { section: "West", question: "Which city is known as the 'Financial Capital of India'?", options: ["Mumbai", "Ahmedabad", "Pune", "Surat"], answer: "Mumbai" },
+      { section: "West", question: "Gir Forest is famous for which animal?", options: ["Lion", "Tiger", "Elephant", "Leopard"], answer: "Lion" },
+      { section: "West", question: "Which desert is located in Rajasthan?", options: ["Thar", "Kutch", "Gobi", "Sahara"], answer: "Thar" },
+      // Central India
+      { section: "Central", question: "What is the capital of Madhya Pradesh?", options: ["Bhopal", "Indore", "Jabalpur", "Gwalior"], answer: "Bhopal" },
+      { section: "Central", question: "Which river flows through Kanha National Park?", options: ["Narmada", "Son", "Tapti", "Godavari"], answer: "Narmada" },
+      { section: "Central", question: "Which state
