@@ -2,20 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Indian Geography Online MCQ Quiz</title>
+  <title>Random 5 Quiz - Chanakya Academy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- jsPDF CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <style>
     body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 20px; }
     .quiz-container { background: #fff; padding: 24px; max-width: 600px; margin: 40px auto; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.08); }
     .question { font-size: 1.2em; margin-bottom: 18px; }
-    .section-header { font-size: 1em; color: #007bff; margin-bottom: 8px; }
     .options { margin-bottom: 16px; }
     .options button { display: block; width: 100%; padding: 10px; margin: 6px 0; border: none; background: #e2e2e2; cursor: pointer; border-radius: 4px; font-size: 1em; }
     .options button:hover { background: #d4d4d4; }
     .result { font-size: 1.1em; margin-top: 20px; }
-    .tip { font-size: 0.96em; color: #444; margin-top: 10px; background: #f1f8e9; padding: 8px 12px; border-radius: 5px; }
     .score { font-weight: bold; color: #1a8917; }
     .next-btn { margin-top: 16px; padding: 10px 18px; font-size: 1em; border: none; border-radius: 4px; background: #007bff; color: #fff; cursor: pointer; }
     .next-btn:disabled { background: #aaa; }
@@ -29,127 +25,40 @@
     <button id="nextBtn" class="next-btn" style="display:none;">Next</button>
   </div>
   <script>
-    const questions = [
-      {
-        "question": "Which Indian state is the largest producer of onions?",
-        "options": ["Maharashtra", "Gujarat", "Karnataka", "Madhya Pradesh"],
-        "answer": 0,
-        "tip": "Maharashtra contributes the most to India's onion output."
-      },
-      {
-        "question": "Which Indian city is known as the 'City of Lakes'?",
-        "options": ["Bhopal", "Udaipur", "Nainital", "Srinagar"],
-        "answer": 1,
-        "tip": "Udaipur is famous for its picturesque lakes."
-      },
-      {
-        "question": "Which river is called the 'Sorrow of Bengal'?",
-        "options": ["Ganga", "Damodar", "Hooghly", "Teesta"],
-        "answer": 1,
-        "tip": "Damodar River is notorious for its floods in Bengal."
-      },
-      {
-        "question": "Which Indian state has the longest coastline?",
-        "options": ["Andhra Pradesh", "Tamil Nadu", "Gujarat", "Maharashtra"],
-        "answer": 2,
-        "tip": "Gujarat has the longest coastline among Indian states."
-      },
-      {
-        "question": "Which mountain range forms the eastern boundary of the Deccan Plateau?",
-        "options": ["Aravalli", "Eastern Ghats", "Western Ghats", "Satpura"],
-        "answer": 1,
-        "tip": "The Eastern Ghats run parallel to the east coast of India."
-      },
-      {
-        "question": "Which Indian state is the largest producer of turmeric?",
-        "options": ["Andhra Pradesh", "Tamil Nadu", "Odisha", "Karnataka"],
-        "answer": 0,
-        "tip": "Andhra Pradesh leads in turmeric production in India."
-      },
-      // --- Newly added questions below ---
-      {
-        "question": "Which Indian state has no coastline and no international frontiers?",
-        "options": ["Madhya Pradesh", "Chhattisgarh", "Jharkhand", "Haryana"],
-        "answer": 0,
-        "tip": "Madhya Pradesh is landlocked and does not share a border with any other country or the sea."
-      },
-      {
-        "question": "The Ranchi, Hazaribagh, and Kodarma plateaus collectively form which region?",
-        "options": ["Malwa Plateau", "Deccan Plateau", "Chota Nagpur Plateau", "Baghelkhand Plateau"],
-        "answer": 2,
-        "tip": "Chota Nagpur Plateau is rich in minerals and lies in eastern India."
-      },
-      {
-        "question": "Which mountain range forms the boundary between India and Myanmar?",
-        "options": ["Himalayas", "Rakhine Mountains", "Aravalli Range", "Western Ghats"],
-        "answer": 1,
-        "tip": "Rakhine (Arakan) Mountains include the Naga, Chin, and Mizo hills."
-      },
-      {
-        "question": "What is the predominant type of soil found in the Indo-Gangetic Plain?",
-        "options": ["Black soil", "Red soil", "Alluvial soil", "Laterite soil"],
-        "answer": 2,
-        "tip": "Alluvial soil is fertile and supports intensive agriculture."
-      },
-      {
-        "question": "Which of the following coal fields is located in Jharkhand?",
-        "options": ["Raniganj", "Jharia", "Talcher", "Korba"],
-        "answer": 1,
-        "tip": "Jharia is famous for high-quality coking coal."
-      },
-      {
-        "question": "Which is the largest river system among the Deccan system of rivers?",
-        "options": ["Godavari", "Krishna", "Cauvery", "Mahanadi"],
-        "answer": 0,
-        "tip": "Godavari is the longest river in South India."
-      },
-      {
-        "question": "Which is the largest completed hydroelectric plant in India?",
-        "options": ["Tehri", "Koyna", "Srisailam", "Bhakra Nangal"],
-        "answer": 1,
-        "tip": "Koyna Hydroelectric Project is in Maharashtra."
-      },
-      {
-        "question": "The Bhakra Nangal Dam is built on which river?",
-        "options": ["Beas", "Sutlej", "Ganga", "Yamuna"],
-        "answer": 1,
-        "tip": "Bhakra Nangal is one of the highest gravity dams in the world."
-      },
-      {
-        "question": "Which is the tallest hydropower project in India?",
-        "options": ["Tehri Dam", "Sardar Sarovar", "Nagarjuna Sagar", "Hirakud"],
-        "answer": 0,
-        "tip": "Tehri Dam is the tallest hydropower project in India."
-      }
-      // Add more questions here as needed
-    ];
-
-    let currentSessionIndexes = Array.from(questions.keys());
+    let allQuestions = [];
+    let quizQuestions = [];
     let currentQuestion = 0;
     let score = 0;
     let answered = false;
-    let userAnswers = [];
 
-    function inferSection(q) {
-      if (q.question.toLowerCase().includes("river")) return "Rivers";
-      if (q.question.toLowerCase().includes("state")) return "States";
-      if (q.question.toLowerCase().includes("city")) return "Cities";
-      if (q.question.toLowerCase().includes("mountain")) return "Mountains";
-      if (q.question.toLowerCase().includes("coastline")) return "Coastlines";
-      if (q.question.toLowerCase().includes("plateau")) return "Plateaus";
-      if (q.question.toLowerCase().includes("producer")) return "Agriculture";
-      if (q.question.toLowerCase().includes("dam") || q.question.toLowerCase().includes("hydro")) return "Dams & Hydropower";
-      if (q.question.toLowerCase().includes("soil")) return "Soils";
-      if (q.question.toLowerCase().includes("coal")) return "Minerals";
-      return "General";
+    // Fisher-Yates shuffle
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+    async function fetchQuestions() {
+      try {
+        const res = await fetch('https://leadsindia.github.io/Chankya-Academy/Quiz/Questions.json');
+        allQuestions = await res.json();
+        startQuiz();
+      } catch (e) {
+        document.getElementById('quizContainer').innerHTML = "<p>Could not load questions. Please try again later.</p>";
+      }
+    }
+
+    function pickRandomQuestions(n) {
+      const shuffled = shuffle([...allQuestions]);
+      return shuffled.slice(0, n);
     }
 
     function showQuestion() {
       answered = false;
-      const q = questions[currentSessionIndexes[currentQuestion]];
-      const section = inferSection(q);
-      document.getElementById('question').innerHTML =
-        `<div class="section-header">Section: ${section}</div>Q${currentQuestion+1}: ${q.question}`;
+      const q = quizQuestions[currentQuestion];
+      document.getElementById('question').textContent = `Q${currentQuestion+1}: ${q.question}`;
       const optionsDiv = document.getElementById('options');
       optionsDiv.innerHTML = '';
       q.options.forEach((option, idx) => {
@@ -165,25 +74,21 @@
     function checkAnswer(selectedIdx, btn) {
       if (answered) return;
       answered = true;
-      const qIdx = currentSessionIndexes[currentQuestion];
-      const q = questions[qIdx];
-      userAnswers[currentQuestion] = selectedIdx;
+      const q = quizQuestions[currentQuestion];
       const optionsDiv = document.getElementById('options');
       Array.from(optionsDiv.children).forEach((b, idx) => {
         b.disabled = true;
         if(idx === q.answer) b.style.background = '#a5d6a7';
         if(idx === selectedIdx && idx !== q.answer) b.style.background = '#ef9a9a';
       });
-      let resultMsg = '';
       if (selectedIdx === q.answer) {
-        resultMsg = '<span style="color:green;">Correct!</span>';
+        document.getElementById('result').innerHTML = '<span style="color:green;">Correct!</span>';
         score++;
       } else {
-        resultMsg = `<span style="color:red;">Wrong!</span> The correct answer is: <b>${q.options[q.answer]}</b>`;
+        document.getElementById('result').innerHTML = `<span style="color:red;">Wrong!</span> The correct answer is: <b>${q.options[q.answer]}</b>`;
       }
-      document.getElementById('result').innerHTML = resultMsg + `<div class="tip">${q.tip}</div>`;
       document.getElementById('nextBtn').style.display = 'inline-block';
-      if(currentQuestion === currentSessionIndexes.length - 1) {
+      if(currentQuestion === quizQuestions.length - 1) {
         document.getElementById('nextBtn').textContent = "Show Score";
       } else {
         document.getElementById('nextBtn').textContent = "Next";
@@ -192,7 +97,7 @@
 
     document.getElementById('nextBtn').onclick = function() {
       currentQuestion++;
-      if(currentQuestion < currentSessionIndexes.length) {
+      if(currentQuestion < quizQuestions.length) {
         showQuestion();
       } else {
         showResult();
@@ -202,20 +107,15 @@
     function showResult() {
       document.getElementById('quizContainer').innerHTML =
         `<h2>Quiz Completed!</h2>
-         <p class="score">Your Score: ${score} / ${currentSessionIndexes.length}</p>
-         <button id="restartBtn">Restart Quiz</button>
-         <button id="downloadPdfBtn" style="margin-left: 10px;">Download PDF</button>
-        `;
-      document.getElementById('restartBtn').onclick = resetQuiz;
-      document.getElementById('downloadPdfBtn').onclick = downloadPDF;
+         <p class="score">Your Score: ${score} / ${quizQuestions.length}</p>
+         <button onclick="startQuiz()">Restart with New 5</button>`;
     }
 
-    function resetQuiz() {
-      currentSessionIndexes = Array.from(questions.keys());
+    function startQuiz() {
+      quizQuestions = pickRandomQuestions(5);
       currentQuestion = 0;
       score = 0;
       answered = false;
-      userAnswers = [];
       document.getElementById('quizContainer').innerHTML = `
         <div id="question" class="question"></div>
         <div id="options" class="options"></div>
@@ -224,7 +124,7 @@
       `;
       document.getElementById('nextBtn').onclick = function() {
         currentQuestion++;
-        if(currentQuestion < currentSessionIndexes.length) {
+        if(currentQuestion < quizQuestions.length) {
           showQuestion();
         } else {
           showResult();
@@ -233,66 +133,8 @@
       showQuestion();
     }
 
-    function downloadPDF() {
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF();
-      doc.setFontSize(18);
-      doc.text("Indian Geography Quiz - Session Questions", 14, 20);
-
-      let y = 30;
-      const pageHeight = doc.internal.pageSize.height;
-
-      for (let i = 0; i < currentSessionIndexes.length; i++) {
-        const qIdx = currentSessionIndexes[i];
-        const q = questions[qIdx];
-        const section = inferSection(q);
-
-        // Section header
-        doc.setFontSize(14);
-        doc.setTextColor("#007bff");
-        doc.text(`Section: ${section}`, 14, y);
-        y += 8;
-
-        // Question text
-        doc.setFontSize(12);
-        doc.setTextColor("#000");
-        let questionText = `Q${i + 1}: ${q.question}`;
-        const splitQuestion = doc.splitTextToSize(questionText, 180);
-        doc.text(splitQuestion, 14, y);
-        y += splitQuestion.length * 7;
-
-        // Options
-        q.options.forEach((opt, idx) => {
-          let prefix = (idx === q.answer) ? "✔ " : "  ";
-          const optionText = prefix + opt;
-          const splitOption = doc.splitTextToSize(optionText, 180);
-          doc.text(splitOption, 20, y);
-          y += splitOption.length * 7;
-        });
-
-        // Tip
-        if (q.tip) {
-          doc.setFontSize(11);
-          doc.setTextColor("#666");
-          const tipText = "Tip: " + q.tip;
-          const splitTip = doc.splitTextToSize(tipText, 180);
-          doc.text(splitTip, 14, y);
-          y += splitTip.length * 7;
-        }
-
-        y += 6; // extra spacing
-
-        if (y > pageHeight - 30) {
-          doc.addPage();
-          y = 20;
-        }
-      }
-
-      doc.save(`Indian_Geography_Quiz_Session_${Date.now()}.pdf`);
-    }
-
-    // --- Initialize the quiz on page load ---
-    resetQuiz();
+    // Start by fetching questions
+    fetchQuestions();
   </script>
 </body>
 </html>
