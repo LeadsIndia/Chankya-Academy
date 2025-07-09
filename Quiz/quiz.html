@@ -4,10 +4,14 @@
   <meta charset="UTF-8">
   <title>Indian Geography Online MCQ Quiz</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- jsPDF and autotable CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
   <style>
     body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 20px; }
     .quiz-container { background: #fff; padding: 24px; max-width: 600px; margin: 40px auto; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.08); }
     .question { font-size: 1.2em; margin-bottom: 18px; }
+    .section-header { font-size: 1em; color: #007bff; margin-bottom: 8px; }
     .options { margin-bottom: 16px; }
     .options button { display: block; width: 100%; padding: 10px; margin: 6px 0; border: none; background: #e2e2e2; cursor: pointer; border-radius: 4px; font-size: 1em; }
     .options button:hover { background: #d4d4d4; }
@@ -17,7 +21,7 @@
     .next-btn:disabled { background: #aaa; }
     .heatmap { margin-top: 32px; }
     .heatmap-bar { display: flex; align-items: center; margin-bottom: 8px; }
-    .heatmap-label { width: 120px; }
+    .heatmap-label { width: 160px; }
     .heatmap-value { width: 200px; height: 20px; border-radius: 4px; margin-left: 8px; }
   </style>
 </head>
@@ -54,7 +58,14 @@
       { section: "Rivers", question: "Which river forms the famous 'Dhuandhar Falls'?", options: ["Narmada", "Tungabhadra", "Godavari", "Cauvery"], answer: 0 },
       { section: "Capitals", question: "Which city is the capital of the Indian state of Gujarat?", options: ["Ahmedabad", "Surat", "Gandhinagar", "Vadodara"], answer: 2 },
       { section: "States", question: "Which Indian state is known as the 'Land of Five Rivers'?", options: ["Punjab", "Haryana", "Rajasthan", "Uttar Pradesh"], answer: 0 },
-      { section: "States", question: "Which Indian state has the largest coastline?", options: ["Tamil Nadu", "Gujarat", "Andhra Pradesh", "Maharashtra"], answer: 1 }
+      { section: "States", question: "Which Indian state has the largest coastline?", options: ["Tamil Nadu", "Gujarat", "Andhra Pradesh", "Maharashtra"], answer: 1 },
+      // --- New Questions Below ---
+      { section: "Rivers", question: "Which river is known as the 'Dakshina Ganga' or 'Ganga of the South'?", options: ["Godavari", "Krishna", "Cauvery", "Mahanadi"], answer: 0 },
+      { section: "States", question: "Which Indian state shares its borders with the maximum number of other states?", options: ["Madhya Pradesh", "Uttar Pradesh", "Chhattisgarh", "Bihar"], answer: 1 },
+      { section: "Capitals", question: "What is the capital of Arunachal Pradesh?", options: ["Itanagar", "Dispur", "Aizawl", "Imphal"], answer: 0 },
+      { section: "Mountains", question: "Which mountain pass connects Srinagar to Leh?", options: ["Nathu La", "Rohtang Pass", "Zoji La", "Shipki La"], answer: 2 },
+      { section: "Lakes", question: "Which is the largest freshwater lake in India?", options: ["Vembanad", "Chilika", "Wular", "Loktak"], answer: 2 },
+      { section: "States", question: "Which Indian state has the highest population density?", options: ["Kerala", "West Bengal", "Bihar", "Uttar Pradesh"], answer: 2 }
     ];
 
     // --- State Variables ---
@@ -76,10 +87,8 @@
     }
 
     function pickNext10Indexes() {
-      // Remove already used indexes from allIndexes
       const remainingIndexes = allIndexes.filter(idx => !usedIndexes.includes(idx));
       const next10 = remainingIndexes.slice(0, 10);
-      // If not enough left, reshuffle and start over
       if (next10.length < 10) {
         usedIndexes = [];
         return pickNext10Indexes();
@@ -90,7 +99,8 @@
     function showQuestion() {
       answered = false;
       const q = questions[currentSessionIndexes[currentQuestion]];
-      document.getElementById('question').textContent = `Q${currentQuestion+1}: ${q.question}`;
+      document.getElementById('question').innerHTML =
+        `<div class="section-header">Section: ${q.section}</div>Q${currentQuestion+1}: ${q.question}`;
       const optionsDiv = document.getElementById('options');
       optionsDiv.innerHTML = '';
       q.options.forEach((option, idx) => {
@@ -114,7 +124,6 @@
         if(idx === q.answer) b.style.background = '#a5d6a7';
         if(idx === selectedIdx && idx !== q.answer) b.style.background = '#ef9a9a';
       });
-      // Track section-wise stats
       if (!sectionStats[q.section]) sectionStats[q.section] = { correct: 0, total: 0 };
       sectionStats[q.section].total++;
       if (selectedIdx === q.answer) {
@@ -142,9 +151,7 @@
     };
 
     function showResult() {
-      // Mark these indexes as used
       usedIndexes = usedIndexes.concat(currentSessionIndexes);
-      // Build heat map
       let heatmapHTML = `<div class="heatmap"><h3>Section-wise Performance</h3>`;
       for (const section in sectionStats) {
         const stat = sectionStats[section];
@@ -165,18 +172,19 @@
         `<h2>Quiz Completed!</h2>
          <p class="score">Your Score: ${score} / ${currentSessionIndexes.length}</p>
          ${heatmapHTML}
-         <button onclick="resetQuiz()">Next 10 Questions</button>`;
+         <button id="nextQuizBtn">Next 10 Questions</button>
+         <button id="downloadPdfBtn" style="margin-left: 10px;">Download PDF</button>
+        `;
+      document.getElementById('nextQuizBtn').onclick = resetQuiz;
+      document.getElementById('downloadPdfBtn').onclick = downloadPDF;
     }
 
     function resetQuiz() {
-      // Pick next 10 indexes, reshuffle if needed
       currentSessionIndexes = shuffle(pickNext10Indexes());
       currentQuestion = 0;
       score = 0;
       answered = false;
-      // Only reset sectionStats if all questions have been cycled
       if (usedIndexes.length === 0) sectionStats = {};
-      // Restore the original quiz HTML structure
       document.getElementById('quizContainer').innerHTML = `
         <div id="question" class="question"></div>
         <div id="options" class="options"></div>
@@ -194,8 +202,54 @@
       showQuestion();
     }
 
+    function downloadPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      doc.setFontSize(18);
+      doc.text("Indian Geography Quiz - Session Questions", 14, 20);
+
+      let y = 30;
+      const pageHeight = doc.internal.pageSize.height;
+
+      for (let i = 0; i < currentSessionIndexes.length; i++) {
+        const qIdx = currentSessionIndexes[i];
+        const q = questions[qIdx];
+
+        // Section header
+        doc.setFontSize(14);
+        doc.setTextColor("#007bff");
+        doc.text(`Section: ${q.section}`, 14, y);
+        y += 8;
+
+        // Question text
+        doc.setFontSize(12);
+        doc.setTextColor("#000");
+        let questionText = `Q${i + 1}: ${q.question}`;
+        const splitQuestion = doc.splitTextToSize(questionText, 180);
+        doc.text(splitQuestion, 14, y);
+        y += splitQuestion.length * 7;
+
+        // Options
+        q.options.forEach((opt, idx) => {
+          let prefix = (idx === q.answer) ? "✔ " : "  ";
+          const optionText = prefix + opt;
+          const splitOption = doc.splitTextToSize(optionText, 180);
+          doc.text(splitOption, 20, y);
+          y += splitOption.length * 7;
+        });
+
+        y += 6; // extra spacing
+
+        if (y > pageHeight - 30) {
+          doc.addPage();
+          y = 20;
+        }
+      }
+
+      doc.save(`Indian_Geography_Quiz_Session_${Date.now()}.pdf`);
+    }
+
     // --- Initialize the quiz on page load ---
-    // Shuffle allIndexes for random order across sessions
     allIndexes = shuffle(allIndexes);
     resetQuiz();
   </script>
