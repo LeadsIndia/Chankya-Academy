@@ -56,4 +56,77 @@
 
     // 2. Shuffle function to randomize questions
     function shuffle(array) {
-      for (let i =
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+    // 3. Shuffle questions at the start
+    let shuffledQuestions = shuffle([...questions]);
+    let currentQuestion = 0;
+    let score = 0;
+    let answered = false;
+
+    function showQuestion() {
+      answered = false;
+      const q = shuffledQuestions[currentQuestion];
+      document.getElementById('question').textContent = `Q${currentQuestion+1}: ${q.question}`;
+      const optionsDiv = document.getElementById('options');
+      optionsDiv.innerHTML = '';
+      q.options.forEach((option, idx) => {
+        const btn = document.createElement('button');
+        btn.textContent = option;
+        btn.onclick = () => checkAnswer(idx, btn);
+        optionsDiv.appendChild(btn);
+      });
+      document.getElementById('result').textContent = '';
+      document.getElementById('nextBtn').style.display = 'none';
+    }
+
+    function checkAnswer(selectedIdx, btn) {
+      if (answered) return;
+      answered = true;
+      const q = shuffledQuestions[currentQuestion];
+      const optionsDiv = document.getElementById('options');
+      Array.from(optionsDiv.children).forEach((b, idx) => {
+        b.disabled = true;
+        if(idx === q.answer) b.style.background = '#a5d6a7'; // green for correct
+        if(idx === selectedIdx && idx !== q.answer) b.style.background = '#ef9a9a'; // red for wrong
+      });
+      if (selectedIdx === q.answer) {
+        document.getElementById('result').innerHTML = '<span style="color:green;">Correct!</span>';
+        score++;
+      } else {
+        document.getElementById('result').innerHTML = `<span style="color:red;">Wrong!</span> The correct answer is: <b>${q.options[q.answer]}</b>`;
+      }
+      document.getElementById('nextBtn').style.display = 'inline-block';
+      if(currentQuestion === shuffledQuestions.length - 1) {
+        document.getElementById('nextBtn').textContent = "Show Score";
+      } else {
+        document.getElementById('nextBtn').textContent = "Next";
+      }
+    }
+
+    document.getElementById('nextBtn').onclick = function() {
+      currentQuestion++;
+      if(currentQuestion < shuffledQuestions.length) {
+        showQuestion();
+      } else {
+        showResult();
+      }
+    };
+
+    function showResult() {
+      document.querySelector('.quiz-container').innerHTML =
+        `<h2>Quiz Completed!</h2>
+         <p class="score">Your Score: ${score} / ${shuffledQuestions.length}</p>
+         <button onclick="window.location.reload()">Restart Quiz</button>`;
+    }
+
+    // Start quiz
+    showQuestion();
+  </script>
+</body>
+</html>
