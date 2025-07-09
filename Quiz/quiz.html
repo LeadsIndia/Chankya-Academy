@@ -2,58 +2,67 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Indian Geography Quiz (Randomized)</title>
+  <title>Indian Geography Quiz</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 24px; }
+    .question { margin-bottom: 18px; }
+    #result { font-weight: bold; margin-top: 18px; }
+    button { margin-right: 10px; }
+  </style>
 </head>
 <body>
-  <h1>Indian Geography Quiz (Randomized)</h1>
-  <button onclick="generateQuiz()">New Quiz</button>
+  <h2>Indian Geography Quiz (Region-wise)</h2>
   <form id="quizForm"></form>
-  <button onclick="submitQuiz()">Submit</button>
+  <button type="button" onclick="submitQuiz()">Submit</button>
+  <button type="button" onclick="resetQuiz()">Reset</button>
   <div id="result"></div>
 
   <script>
-    // Sample data: Replace with your full 500-question array
+    // Sample: 5 questions per region. Replace with your full 500-question array!
     const allQuestions = [
-      // North India (Sample)
-      {region: "North India", question: "Q1 North", options: ["A","B","C","D"], answer: "A"},
-      {region: "North India", question: "Q2 North", options: ["A","B","C","D"], answer: "B"},
-      {region: "North India", question: "Q3 North", options: ["A","B","C","D"], answer: "C"},
-      {region: "North India", question: "Q4 North", options: ["A","B","C","D"], answer: "D"},
-      {region: "North India", question: "Q5 North", options: ["A","B","C","D"], answer: "A"},
-      // South India (Sample)
-      {region: "South India", question: "Q1 South", options: ["A","B","C","D"], answer: "A"},
-      {region: "South India", question: "Q2 South", options: ["A","B","C","D"], answer: "B"},
-      {region: "South India", question: "Q3 South", options: ["A","B","C","D"], answer: "C"},
-      {region: "South India", question: "Q4 South", options: ["A","B","C","D"], answer: "D"},
-      {region: "South India", question: "Q5 South", options: ["A","B","C","D"], answer: "A"},
-      // East India (Sample)
-      {region: "East India", question: "Q1 East", options: ["A","B","C","D"], answer: "A"},
-      {region: "East India", question: "Q2 East", options: ["A","B","C","D"], answer: "B"},
-      {region: "East India", question: "Q3 East", options: ["A","B","C","D"], answer: "C"},
-      {region: "East India", question: "Q4 East", options: ["A","B","C","D"], answer: "D"},
-      {region: "East India", question: "Q5 East", options: ["A","B","C","D"], answer: "A"},
-      // West India (Sample)
-      {region: "West India", question: "Q1 West", options: ["A","B","C","D"], answer: "A"},
-      {region: "West India", question: "Q2 West", options: ["A","B","C","D"], answer: "B"},
-      {region: "West India", question: "Q3 West", options: ["A","B","C","D"], answer: "C"},
-      {region: "West India", question: "Q4 West", options: ["A","B","C","D"], answer: "D"},
-      {region: "West India", question: "Q5 West", options: ["A","B","C","D"], answer: "A"},
-      // Central India (Sample)
-      {region: "Central India", question: "Q1 Central", options: ["A","B","C","D"], answer: "A"},
-      {region: "Central India", question: "Q2 Central", options: ["A","B","C","D"], answer: "B"},
-      {region: "Central India", question: "Q3 Central", options: ["A","B","C","D"], answer: "C"},
-      {region: "Central India", question: "Q4 Central", options: ["A","B","C","D"], answer: "D"},
-      {region: "Central India", question: "Q5 Central", options: ["A","B","C","D"], answer: "A"},
-      // Northeast India (Sample)
-      {region: "Northeast India", question: "Q1 NE", options: ["A","B","C","D"], answer: "A"},
-      {region: "Northeast India", question: "Q2 NE", options: ["A","B","C","D"], answer: "B"},
-      {region: "Northeast India", question: "Q3 NE", options: ["A","B","C","D"], answer: "C"},
-      {region: "Northeast India", question: "Q4 NE", options: ["A","B","C","D"], answer: "D"},
-      {region: "Northeast India", question: "Q5 NE", options: ["A","B","C","D"], answer: "A"}
+      // North India (sample)
+      {region: "North India", question: "Which river is known as the lifeline of North India?", options: ["Yamuna", "Ganga", "Indus", "Beas"], answer: "Ganga"},
+      {region: "North India", question: "Which city is called the 'Gateway to the Himalayas'?", options: ["Dehradun", "Shimla", "Haridwar", "Manali"], answer: "Haridwar"},
+      {region: "North India", question: "Which state shares its border with China in North India?", options: ["Punjab", "Uttarakhand", "Haryana", "Delhi"], answer: "Uttarakhand"},
+      {region: "North India", question: "What is the capital of Himachal Pradesh?", options: ["Shimla", "Dharamshala", "Manali", "Kullu"], answer: "Shimla"},
+      {region: "North India", question: "Which North Indian city is famous for the Golden Temple?", options: ["Amritsar", "Chandigarh", "Ludhiana", "Jalandhar"], answer: "Amritsar"},
+      // South India (sample)
+      {region: "South India", question: "Which river is called the 'Dakshina Ganga'?", options: ["Godavari", "Krishna", "Kaveri", "Periyar"], answer: "Godavari"},
+      {region: "South India", question: "Which city is known as the 'Queen of the Arabian Sea'?", options: ["Kochi", "Chennai", "Mangalore", "Vishakhapatnam"], answer: "Kochi"},
+      {region: "South India", question: "Which state is famous for the Meenakshi Temple?", options: ["Kerala", "Tamil Nadu", "Karnataka", "Andhra Pradesh"], answer: "Tamil Nadu"},
+      {region: "South India", question: "Which is the largest city in Karnataka?", options: ["Mysore", "Bangalore", "Hubli", "Mangalore"], answer: "Bangalore"},
+      {region: "South India", question: "Which South Indian state has the highest literacy rate?", options: ["Kerala", "Tamil Nadu", "Karnataka", "Andhra Pradesh"], answer: "Kerala"},
+      // East India (sample)
+      {region: "East India", question: "Which city is known as the 'City of Joy'?", options: ["Patna", "Kolkata", "Bhubaneswar", "Ranchi"], answer: "Kolkata"},
+      {region: "East India", question: "Which river flows through Kolkata?", options: ["Mahanadi", "Hooghly", "Brahmaputra", "Subarnarekha"], answer: "Hooghly"},
+      {region: "East India", question: "What is the capital of Odisha?", options: ["Cuttack", "Bhubaneswar", "Puri", "Sambalpur"], answer: "Bhubaneswar"},
+      {region: "East India", question: "Which plateau is located in Jharkhand?", options: ["Chota Nagpur Plateau", "Deccan Plateau", "Malwa Plateau", "Baghelkhand Plateau"], answer: "Chota Nagpur Plateau"},
+      {region: "East India", question: "Which state is famous for the Jagannath Rath Yatra?", options: ["West Bengal", "Odisha", "Bihar", "Jharkhand"], answer: "Odisha"},
+      // West India (sample)
+      {region: "West India", question: "Which city is known as the 'Financial Capital of India'?", options: ["Ahmedabad", "Pune", "Mumbai", "Surat"], answer: "Mumbai"},
+      {region: "West India", question: "Which state is famous for the Rann of Kutch?", options: ["Maharashtra", "Goa", "Gujarat", "Rajasthan"], answer: "Gujarat"},
+      {region: "West India", question: "Which is the largest state in West India by area?", options: ["Goa", "Maharashtra", "Gujarat", "Rajasthan"], answer: "Rajasthan"},
+      {region: "West India", question: "Which city is known as the 'Pink City'?", options: ["Udaipur", "Jodhpur", "Jaipur", "Ajmer"], answer: "Jaipur"},
+      {region: "West India", question: "Which state is famous for Ajanta and Ellora caves?", options: ["Gujarat", "Maharashtra", "Goa", "Rajasthan"], answer: "Maharashtra"},
+      // Central India (sample)
+      {region: "Central India", question: "Which state is known as the 'Heart of India'?", options: ["Chhattisgarh", "Madhya Pradesh", "Uttar Pradesh", "Maharashtra"], answer: "Madhya Pradesh"},
+      {region: "Central India", question: "Which river flows through Jabalpur?", options: ["Narmada", "Godavari", "Mahanadi", "Yamuna"], answer: "Narmada"},
+      {region: "Central India", question: "What is the capital of Chhattisgarh?", options: ["Bhopal", "Raipur", "Indore", "Bilaspur"], answer: "Raipur"},
+      {region: "Central India", question: "Which national park is famous for tigers in Madhya Pradesh?", options: ["Kanha", "Gir", "Kaziranga", "Jim Corbett"], answer: "Kanha"},
+      {region: "Central India", question: "Which plateau covers a major part of Central India?", options: ["Malwa Plateau", "Chota Nagpur Plateau", "Deccan Plateau", "Baghelkhand Plateau"], answer: "Malwa Plateau"},
+      // Northeast India (sample)
+      {region: "Northeast India", question: "Which state is known as the 'Land of the Rising Sun'?", options: ["Assam", "Arunachal Pradesh", "Nagaland", "Manipur"], answer: "Arunachal Pradesh"},
+      {region: "Northeast India", question: "Kaziranga National Park is famous for which animal?", options: ["Tiger", "Elephant", "One-horned Rhinoceros", "Leopard"], answer: "One-horned Rhinoceros"},
+      {region: "Northeast India", question: "Which river flows through Assam?", options: ["Ganga", "Brahmaputra", "Yamuna", "Godavari"], answer: "Brahmaputra"},
+      {region: "Northeast India", question: "Shillong is the capital of which state?", options: ["Nagaland", "Meghalaya", "Mizoram", "Tripura"], answer: "Meghalaya"},
+      {region: "Northeast India", question: "Which state is famous for Loktak Lake?", options: ["Manipur", "Assam", "Tripura", "Nagaland"], answer: "Manipur"}
     ];
 
-    // Group questions by region
-    const regions = ["North India", "South India", "East India", "West India", "Central India", "Northeast India"];
+    const regions = [
+      "North India", "South India", "East India",
+      "West India", "Central India", "Northeast India"
+    ];
+
     let questionsByRegion = {};
     regions.forEach(region => {
       questionsByRegion[region] = allQuestions.filter(q => q.region === region);
@@ -61,7 +70,7 @@
 
     let previousQuiz = [];
 
-    // Utility: Shuffle an array
+    // Shuffle utility
     function shuffle(array) {
       for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -70,17 +79,75 @@
       return array;
     }
 
-    // Select 4 random questions per region, avoiding repeats from previousQuiz
+    // Select 4 random questions per region, max 2 repeats from previousQuiz
     function selectQuiz() {
       let newQuiz = [];
       let repeats = 0;
       let previousSet = new Set(previousQuiz.map(q => q.question));
       regions.forEach(region => {
-        let regionQuestions = questionsByRegion[region].slice(); // clone
+        let regionQuestions = questionsByRegion[region].slice();
         shuffle(regionQuestions);
 
-        // Try to select 4 questions with minimal repeats
         let selected = [];
         for (let q of regionQuestions) {
           if (selected.length < 4) {
-            if (!previousSet.has(q.question) || repeats >=
+            if (!previousSet.has(q.question) || repeats >= 2) {
+              selected.push(q);
+            } else if (repeats < 2) {
+              selected.push(q);
+              repeats++;
+            }
+          }
+        }
+        // Fill up if not enough
+        while (selected.length < 4) {
+          for (let q of regionQuestions) {
+            if (!selected.includes(q)) {
+              selected.push(q);
+              if (previousSet.has(q.question)) repeats++;
+              if (selected.length === 4) break;
+            }
+          }
+        }
+        newQuiz = newQuiz.concat(selected.slice(0, 4));
+      });
+      // If repeats > 2, try again
+      if (repeats > 2) return selectQuiz();
+      return newQuiz;
+    }
+
+    function loadQuiz(quizQuestions) {
+      const form = document.getElementById('quizForm');
+      form.innerHTML = '';
+      quizQuestions.forEach((q, idx) => {
+        form.innerHTML += `<div class="question">
+          <b>Q${idx + 1} (${q.region}):</b> ${q.question}<br>
+          ${q.options.map(opt =>
+            `<label><input type="radio" name="q${idx}" value="${opt}"> ${opt}</label>`
+          ).join(' ')}
+        </div>`;
+      });
+    }
+
+    function submitQuiz() {
+      let score = 0;
+      previousQuiz.forEach((q, idx) => {
+        const selected = document.querySelector(`input[name="q${idx}"]:checked`);
+        if (selected && selected.value === q.answer) score++;
+      });
+      document.getElementById('result').innerHTML =
+        `<span>Your Score: ${score} / ${previousQuiz.length}</span>`;
+    }
+
+    function resetQuiz() {
+      const quizQuestions = selectQuiz();
+      previousQuiz = quizQuestions;
+      loadQuiz(quizQuestions);
+      document.getElementById('result').innerHTML = '';
+    }
+
+    // On page load
+    resetQuiz();
+  </script>
+</body>
+</html>
