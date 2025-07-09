@@ -41,8 +41,8 @@
     <h2>Indian Geography Quiz</h2>
     <form id="quizForm"></form>
     <div class="actions">
-      <button type="button" onclick="submitQuiz()">Submit</button>
-      <button type="button" onclick="resetQuiz()">Reset</button>
+      <button type="button" id="submitBtn">Submit</button>
+      <button type="button" id="resetBtn">Reset</button>
     </div>
     <div id="scorecard"></div>
   </div>
@@ -111,4 +111,74 @@
       form.innerHTML = '';
       let sectionGroups = {};
       questions.forEach((q, idx) => {
-        if (!sectionGroups[q.section]) sectionGroups[q.section
+        if (!sectionGroups[q.section]) sectionGroups[q.section] = [];
+        sectionGroups[q.section].push({ ...q, idx });
+      });
+      Object.keys(sectionGroups).forEach(section => {
+        form.innerHTML += `<div class="section-block"><div class="section-title">${section} India</div>`;
+        sectionGroups[section].forEach(qobj => {
+          form.innerHTML += `
+            <div class="question">${qobj.q}</div>
+            <div class="options">
+              ${qobj.opts.map(opt => `
+                <label><input type="radio" name="q${qobj.idx}" value="${opt}"> ${opt}</label>
+              `).join('')}
+            </div>
+          `;
+        });
+        form.innerHTML += `</div>`;
+      });
+      document.getElementById('scorecard').innerHTML = '';
+    }
+
+    // Submit logic
+    function submitQuiz() {
+      let quizQuestions = JSON.parse(sessionStorage.getItem('currentQuizQuestions'));
+      let sectionScores = {};
+      quizQuestions.forEach((q, idx) => {
+        if (!sectionScores[q.section]) sectionScores[q.section] = { correct: 0, total: 0 };
+        sectionScores[q.section].total++;
+        let selected = document.querySelector(`input[name="q${idx}"]:checked`);
+        if (selected && selected.value === q.a) sectionScores[q.section].correct++;
+      });
+      // Heatmap and scorecard
+      let heatmapHTML = '<div class="heatmap-row">';
+      let detailsHTML = '';
+      Object.keys(sectionScores).forEach(section => {
+        const { correct, total } = sectionScores[section];
+        let pct = total ? correct / total : 0;
+        let heatClass = pct > 0.8 ? 'heat-high' : pct > 0.4 ? 'heat-mid' : 'heat-low';
+        heatmapHTML += `<span class="heatcell ${heatClass}" title="${section} India">${section[0]}</span>`;
+        detailsHTML += `<div class="score-details">${section} India: <b>${correct} / ${total}</b></div>`;
+      });
+      heatmapHTML += '</div>';
+      document.getElementById('scorecard').innerHTML = `
+        <h3>Section-wise Heatmap</h3>
+        ${heatmapHTML}
+        <div>${detailsHTML}</div>
+      `;
+    }
+
+    // Reset logic: new questions, update sessionStorage, render
+    function resetQuiz() {
+      const quizQuestions = getQuizQuestions();
+      sessionStorage.setItem('currentQuizQuestions', JSON.stringify(quizQuestions));
+      renderQuizFromQuestions(quizQuestions);
+    }
+
+    // On load: use sessionStorage if available, else generate new
+    window.onload = function() {
+      const saved = sessionStorage.getItem('currentQuizQuestions');
+      if (saved) {
+        renderQuizFromQuestions(JSON.parse(saved));
+      } else {
+        resetQuiz();
+      }
+    };
+
+    // Attach event listeners
+    document.getElementById('submitBtn').onclick = submitQuiz;
+    document.getElementById('resetBtn').onclick = resetQuiz;
+  </script>
+</body>
+</html>
