@@ -7,7 +7,7 @@
   },
   {
     "question": "Which river is known as the 'Ganga of the South'?",
-    "options": ["Godavari", "Krishna", "Cauvery", "Mahanadi"],
+    "options": ["Godavari", "Krishna", "Cauvery","Mahanadi"],
     "answer": 0,
     "tip": "Godavari is the longest river in peninsular India."
   },
