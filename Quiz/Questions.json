@@ -18,7 +18,885 @@
     "tip": "Kanchenjunga is the highest peak located entirely within India."
   },
   {
-    "question": "Which is the largest producer of oranges?",
+    "question": "What is the longest river in India?",
+    "options": ["Yamuna", "Godavari", "Ganga", "Brahmaputra"],
+    "answer": 2,
+    "tip": "The Ganga is the longest river in India."
+  },
+  {
+    "question": "Which desert is located in the northwest part of India?",
+    "options": ["Rann of Kutch", "Thar Desert", "Deccan Plateau", "Chotanagpur Plateau"],
+    "answer": 1,
+    "tip": "The Thar Desert is also called the Great Indian Desert."
+  },
+  {
+    "question": "Which state is known as the 'Land of Five Rivers'?",
+    "options": ["Punjab", "Haryana", "Bihar", "Gujarat"],
+    "answer": 0,
+    "tip": "Punjab's name means 'five waters' in Persian."
+  },
+  {
+    "question": "What is the capital of Jammu and Kashmir (summer)?",
+    "options": ["Jammu", "Srinagar", "Leh", "Poonch"],
+    "answer": 1,
+    "tip": "Srinagar is the summer capital, Jammu is the winter capital."
+  },
+  {
+    "question": "Which Indian state is known for its famous backwaters?",
+    "options": ["Kerala", "Goa", "Tamil Nadu", "Andhra Pradesh"],
+    "answer": 0,
+    "tip": "Kerala's backwaters attract tourists from around the world."
+  },
+  {
+    "question": "Which Indian state is known for the Sundarbans mangrove forest?",
+    "options": ["Odisha", "West Bengal", "Assam", "Andhra Pradesh"],
+    "answer": 1,
+    "tip": "The Sundarbans are a UNESCO World Heritage Site."
+  },
+  {
+    "question": "What is the southernmost point of the Indian mainland?",
+    "options": ["Indira Point", "Kanyakumari", "Rameswaram", "Cape Comorin"],
+    "answer": 1,
+    "tip": "Kanyakumari is the southern tip of the mainland."
+  },
+  {
+    "question": "Which state is known as the 'Rice Bowl of India'?",
+    "options": ["Punjab", "Andhra Pradesh", "West Bengal", "Chhattisgarh"],
+    "answer": 1,
+    "tip": "Andhra Pradesh is called the 'Rice Bowl' due to its high rice production."
+  },
+  {
+    "question": "Which is the official language of Tamil Nadu?",
+    "options": ["Malayalam", "Tamil", "Telugu", "Kannada"],
+    "answer": 1,
+    "tip": "Tamil is one of the oldest classical languages."
+  },
+  {
+    "question": "In which state is the famous Keoladeo National Park located?",
+    "options": ["Madhya Pradesh", "Rajasthan", "Gujarat", "Uttar Pradesh"],
+    "answer": 1,
+    "tip": "Keoladeo is a UNESCO World Heritage bird sanctuary in Rajasthan."
+  },
+  {
+    "question": "Which city is called the 'Pink City'?",
+    "options": ["Udaipur", "Jodhpur", "Jaipur", "Ajmer"],
+    "answer": 2,
+    "tip": "Jaipur was painted pink to welcome the Prince of Wales in 1876."
+  },
+  {
+    "question": "Which is the largest freshwater lake in India?",
+    "options": ["Vembanad", "Chilika", "Wular", "Loktak"],
+    "answer": 2,
+    "tip": "Wular Lake in Jammu & Kashmir is the largest freshwater lake in India."
+  },
+  {
+    "question": "Which Indian state has the highest population density?",
+    "options": ["Kerala", "Bihar", "West Bengal", "Uttar Pradesh"],
+    "answer": 1,
+    "tip": "Bihar has the highest population density among Indian states."
+  },
+  {
+    "question": "The Tropic of Cancer does NOT pass through which of these states?",
+    "options": ["Rajasthan", "Madhya Pradesh", "Gujarat", "Odisha"],
+    "answer": 3,
+    "tip": "Odisha is not crossed by the Tropic of Cancer."
+  },
+  {
+    "question": "The Andaman and Nicobar Islands are located in which sea?",
+    "options": ["Arabian Sea", "Bay of Bengal", "Indian Ocean", "Laccadive Sea"],
+    "answer": 1,
+    "tip": "These islands are in the Bay of Bengal."
+  },
+  {
+    "question": "Which Indian city is called the 'Silicon Valley of India'?",
+    "options": ["Hyderabad", "Bangalore", "Pune", "Chennai"],
+    "answer": 1,
+    "tip": "Bangalore is known for its booming IT industry."
+  },
+  {
+    "question": "Which mountain pass connects Srinagar to Leh?",
+    "options": ["Nathu La", "Rohtang Pass", "Zoji La", "Shipki La"],
+    "answer": 2,
+    "tip": "Zoji La is a high mountain pass in the Himalayas."
+  },
+  {
+    "question": "Which river is the Srisailam Dam built on?",
+    "options": ["Godavari", "Krishna", "Cauvery", "Mahanadi"],
+    "answer": 1,
+    "tip": "Srisailam Dam is constructed across the Krishna River in Andhra Pradesh."
+  },
+  {
+    "question": "Which state is India's largest producer of coffee?",
+    "options": ["Kerala", "Tamil Nadu", "Karnataka", "Assam"],
+    "answer": 2,
+    "tip": "Karnataka accounts for over 70% of India's coffee production."
+  },
+  {
+    "question": "Which river is known as the 'Sorrow of Bihar'?",
+    "options": ["Ganga", "Kosi", "Son", "Gandak"],
+    "answer": 1,
+    "tip": "The Kosi River is infamous for frequent floods in Bihar."
+  },
+  {
+    "question": "Which is the oldest mountain range in India?",
+    "options": ["Himalayas", "Vindhyas", "Aravallis", "Satpuras"],
+    "answer": 2,
+    "tip": "The Aravalli Range is among the world's oldest mountain ranges."
+  },
+  {
+    "question": "Which city is called the 'Manchester of India'?",
+    "options": ["Mumbai", "Kanpur", "Ahmedabad", "Surat"],
+    "answer": 2,
+    "tip": "Ahmedabad is known for its textile industry."
+  },
+  {
+    "question": "Which state is the leading producer of sugarcane in India?",
+    "options": ["Maharashtra", "Uttar Pradesh", "Punjab", "Bihar"],
+    "answer": 1,
+    "tip": "Uttar Pradesh produces the most sugarcane in India."
+  },
+  {
+    "question": "Which river is the Hirakud Dam built on?",
+    "options": ["Mahanadi", "Godavari", "Krishna", "Narmada"],
+    "answer": 0,
+    "tip": "Hirakud Dam is built across the Mahanadi River in Odisha."
+  },
+  {
+    "question": "Which Indian state is the largest producer of tea?",
+    "options": ["Assam", "West Bengal", "Kerala", "Tamil Nadu"],
+    "answer": 0,
+    "tip": "Assam is famous for its tea gardens."
+  },
+  {
+    "question": "Which is the largest saltwater lake in India?",
+    "options": ["Vembanad", "Chilika", "Wular", "Sambhar"],
+    "answer": 1,
+    "tip": "Chilika Lake in Odisha is Asia's largest brackish water lagoon."
+  },
+  {
+    "question": "Which Indian state shares its borders with the maximum number of other states?",
+    "options": ["Madhya Pradesh", "Uttar Pradesh", "Chhattisgarh", "Bihar"],
+    "answer": 1,
+    "tip": "Uttar Pradesh shares borders with 9 states and Nepal."
+  },
+  {
+    "question": "Which is the largest plateau in India?",
+    "options": ["Deccan Plateau", "Chotanagpur Plateau", "Malwa Plateau", "Baghelkhand Plateau"],
+    "answer": 0,
+    "tip": "The Deccan Plateau covers most of South India."
+  },
+  {
+    "question": "Which river forms the largest delta in the world?",
+    "options": ["Ganga", "Godavari", "Krishna", "Brahmaputra"],
+    "answer": 0,
+    "tip": "The Ganga-Brahmaputra delta is the world's largest."
+  },
+  {
+    "question": "Which state is the leading producer of spices in India?",
+    "options": ["Kerala", "Tamil Nadu", "Karnataka", "Andhra Pradesh"],
+    "answer": 0,
+    "tip": "Kerala is famous for black pepper and cardamom."
+  },
+  {
+    "question": "Which is the largest union territory of India by area?",
+    "options": ["Delhi", "Puducherry", "Ladakh", "Andaman and Nicobar Islands"],
+    "answer": 2,
+    "tip": "Ladakh became the largest UT after the 2019 reorganization."
+  },
+  {
+    "question": "Which is the smallest state in India by area?",
+    "options": ["Goa", "Sikkim", "Tripura", "Nagaland"],
+    "answer": 0,
+    "tip": "Goa is the smallest Indian state by area."
+  },
+  {
+    "question": "Which river flows through the city of Kolkata?",
+    "options": ["Hooghly", "Ganga", "Yamuna", "Damodar"],
+    "answer": 0,
+    "tip": "The Hooghly is a distributary of the Ganga."
+  },
+  {
+    "question": "Which Indian state is known as the 'Spice Garden of India'?",
+    "options": ["Kerala", "Karnataka", "Andhra Pradesh", "Tamil Nadu"],
+    "answer": 0,
+    "tip": "Kerala is renowned for its spice plantations."
+  },
+  {
+    "question": "Which is the largest island in India?",
+    "options": ["Majuli", "Rameswaram", "Great Nicobar", "Diu"],
+    "answer": 2,
+    "tip": "Great Nicobar is the largest island in India."
+  },
+  {
+    "question": "Which river is known as the 'Lifeline of Gujarat'?",
+    "options": ["Sabarmati", "Narmada", "Tapti", "Mahi"],
+    "answer": 1,
+    "tip": "The Narmada is called Gujarat's lifeline."
+  },
+  {
+    "question": "Which state is the largest producer of wheat in India?",
+    "options": ["Punjab", "Madhya Pradesh", "Uttar Pradesh", "Haryana"],
+    "answer": 2,
+    "tip": "Uttar Pradesh leads in wheat production."
+  },
+  {
+    "question": "Which is the longest national highway in India?",
+    "options": ["NH44", "NH2", "NH7", "NH8"],
+    "answer": 0,
+    "tip": "NH44 runs from Srinagar to Kanyakumari."
+  },
+  {
+    "question": "Which Indian state is the largest producer of cotton?",
+    "options": ["Maharashtra", "Gujarat", "Punjab", "Andhra Pradesh"],
+    "answer": 1,
+    "tip": "Gujarat leads in cotton production."
+  },
+  {
+    "question": "Which is the largest port in India by cargo volume?",
+    "options": ["Kolkata", "Chennai", "Mumbai", "Kandla"],
+    "answer": 3,
+    "tip": "Kandla Port in Gujarat handles the most cargo."
+  },
+  {
+    "question": "Which river originates from Amarkantak Plateau?",
+    "options": ["Narmada", "Tapti", "Godavari", "Mahanadi"],
+    "answer": 0,
+    "tip": "Narmada originates from Amarkantak in Madhya Pradesh."
+  },
+  {
+    "question": "Which is the largest producer of natural gas in India?",
+    "options": ["Assam", "Gujarat", "Maharashtra", "Andhra Pradesh"],
+    "answer": 1,
+    "tip": "Gujarat produces the most natural gas in India."
+  },
+  {
+    "question": "Which Indian state is known as the 'Land of Rising Sun'?",
+    "options": ["Assam", "Nagaland", "Arunachal Pradesh", "Sikkim"],
+    "answer": 2,
+    "tip": "Arunachal Pradesh is the easternmost state."
+  },
+  {
+    "question": "Which river is the Bhakra Nangal Dam built on?",
+    "options": ["Beas", "Sutlej", "Ravi", "Chenab"],
+    "answer": 1,
+    "tip": "Bhakra Nangal Dam is on the Sutlej River."
+  },
+  {
+    "question": "Which Indian state is the largest producer of jute?",
+    "options": ["Assam", "West Bengal", "Odisha", "Bihar"],
+    "answer": 1,
+    "tip": "West Bengal produces the most jute in India."
+  },
+  {
+    "question": "Which is the largest producer of pulses in India?",
+    "options": ["Madhya Pradesh", "Maharashtra", "Uttar Pradesh", "Rajasthan"],
+    "answer": 0,
+    "tip": "Madhya Pradesh is known as the pulse bowl of India."
+  },
+  {
+    "question": "Which Indian state is the largest producer of rubber?",
+    "options": ["Kerala", "Tamil Nadu", "Karnataka", "Assam"],
+    "answer": 0,
+    "tip": "Kerala dominates rubber production in India."
+  },
+  // --------- Batch 2 (51-100) ---------
+  {
+    "question": "Which Indian state is the largest producer of onions?",
+    "options": ["Maharashtra", "Gujarat", "Karnataka", "Madhya Pradesh"],
+    "answer": 0,
+    "tip": "Maharashtra contributes the most to India's onion output."
+  },
+  {
+    "question": "Which Indian city is known as the 'City of Lakes'?",
+    "options": ["Bhopal", "Udaipur", "Nainital", "Srinagar"],
+    "answer": 1,
+    "tip": "Udaipur is famous for its picturesque lakes."
+  },
+  {
+    "question": "Which river is called the 'Sorrow of Bengal'?",
+    "options": ["Ganga", "Damodar", "Hooghly", "Teesta"],
+    "answer": 1,
+    "tip": "Damodar River is notorious for its floods in Bengal."
+  },
+  {
+    "question": "Which Indian state has the longest coastline?",
+    "options": ["Andhra Pradesh", "Tamil Nadu", "Gujarat", "Maharashtra"],
+    "answer": 2,
+    "tip": "Gujarat has the longest coastline among Indian states."
+  },
+  {
+    "question": "Which mountain range forms the eastern boundary of the Deccan Plateau?",
+    "options": ["Aravalli", "Eastern Ghats", "Western Ghats", "Satpura"],
+    "answer": 1,
+    "tip": "The Eastern Ghats run parallel to the east coast of India."
+  },
+  {
+    "question": "Which Indian state is the largest producer of turmeric?",
+    "options": ["Andhra Pradesh", "Tamil Nadu", "Odisha", "Karnataka"],
+    "answer": 0,
+    "tip": "Andhra Pradesh leads in turmeric production."
+  },
+  {
+    "question": "Which is the highest waterfall in India?",
+    "options": ["Jog Falls", "Dudhsagar Falls", "Nohkalikai Falls", "Athirapally Falls"],
+    "answer": 2,
+    "tip": "Nohkalikai Falls in Meghalaya is the highest plunge waterfall in India."
+  },
+  {
+    "question": "Which Indian state is known as the 'Fruit Bowl of India'?",
+    "options": ["Kashmir", "Himachal Pradesh", "Uttarakhand", "Assam"],
+    "answer": 1,
+    "tip": "Himachal Pradesh is famous for its apples and other fruits."
+  },
+  {
+    "question": "Which river flows through the city of Lucknow?",
+    "options": ["Yamuna", "Gomti", "Ganga", "Ghaghara"],
+    "answer": 1,
+    "tip": "The Gomti River passes through Lucknow."
+  },
+  {
+    "question": "Which Indian state is the largest producer of bauxite?",
+    "options": ["Odisha", "Jharkhand", "Chhattisgarh", "Maharashtra"],
+    "answer": 0,
+    "tip": "Odisha has the largest reserves and production of bauxite."
+  },
+  {
+    "question": "Which is the largest district in India by area?",
+    "options": ["Kutch", "Leh", "Jaisalmer", "Lahaul and Spiti"],
+    "answer": 0,
+    "tip": "Kutch district in Gujarat is the largest by area."
+  },
+  {
+    "question": "Which Indian state is the leading producer of cashew nuts?",
+    "options": ["Kerala", "Goa", "Maharashtra", "Andhra Pradesh"],
+    "answer": 3,
+    "tip": "Andhra Pradesh is the top cashew nut producer."
+  },
+  {
+    "question": "Which river is the Nagarjuna Sagar Dam built on?",
+    "options": ["Godavari", "Krishna", "Cauvery", "Mahanadi"],
+    "answer": 1,
+    "tip": "Nagarjuna Sagar Dam is on the Krishna River."
+  },
+  {
+    "question": "Which Indian state is the largest producer of silk?",
+    "options": ["Assam", "West Bengal", "Karnataka", "Tamil Nadu"],
+    "answer": 2,
+    "tip": "Karnataka produces the most silk in India."
+  },
+  {
+    "question": "Which Indian city is called the 'Steel City of India'?",
+    "options": ["Jamshedpur", "Bhilai", "Durgapur", "Rourkela"],
+    "answer": 0,
+    "tip": "Jamshedpur is home to Tata Steel, India's first steel plant."
+  },
+  {
+    "question": "Which Indian state is the largest producer of coal?",
+    "options": ["Jharkhand", "Odisha", "Chhattisgarh", "West Bengal"],
+    "answer": 0,
+    "tip": "Jharkhand has the largest coal reserves and production."
+  },
+  {
+    "question": "Which river forms the boundary between Uttar Pradesh and Bihar?",
+    "options": ["Ganga", "Yamuna", "Son", "Gandak"],
+    "answer": 0,
+    "tip": "The Ganga forms a natural boundary between these states."
+  },
+  {
+    "question": "Which Indian city is known as the 'Gateway of India'?",
+    "options": ["Chennai", "Mumbai", "Kolkata", "Goa"],
+    "answer": 1,
+    "tip": "Mumbai is famous for the Gateway of India monument."
+  },
+  {
+    "question": "Which Indian state is the largest producer of groundnuts?",
+    "options": ["Gujarat", "Maharashtra", "Andhra Pradesh", "Tamil Nadu"],
+    "answer": 0,
+    "tip": "Gujarat leads in groundnut production."
+  },
+  {
+    "question": "Which is the largest man-made lake in India?",
+    "options": ["Gobind Sagar", "Hussain Sagar", "Upper Lake", "Vembanad"],
+    "answer": 0,
+    "tip": "Gobind Sagar in Himachal Pradesh is the largest artificial lake."
+  },
+  {
+    "question": "Which Indian state is the largest producer of cardamom?",
+    "options": ["Kerala", "Karnataka", "Tamil Nadu", "Assam"],
+    "answer": 0,
+    "tip": "Kerala is known for its high-quality cardamom."
+  },
+  {
+    "question": "Which river is the Tehri Dam built on?",
+    "options": ["Bhagirathi", "Alaknanda", "Yamuna", "Ganga"],
+    "answer": 0,
+    "tip": "Tehri Dam is constructed on the Bhagirathi River in Uttarakhand."
+  },
+  {
+    "question": "Which Indian state is the largest producer of tobacco?",
+    "options": ["Andhra Pradesh", "Gujarat", "Karnataka", "West Bengal"],
+    "answer": 0,
+    "tip": "Andhra Pradesh is India's leading tobacco producer."
+  },
+  {
+    "question": "Which Indian city is called the 'Queen of the Arabian Sea'?",
+    "options": ["Mumbai", "Cochin", "Goa", "Mangalore"],
+    "answer": 1,
+    "tip": "Cochin (Kochi) is known as the 'Queen of the Arabian Sea'."
+  },
+  {
+    "question": "Which Indian state is the largest producer of saffron?",
+    "options": ["Himachal Pradesh", "Jammu & Kashmir", "Uttarakhand", "Sikkim"],
+    "answer": 1,
+    "tip": "Jammu & Kashmir is famous for its saffron fields."
+  },
+  {
+    "question": "Which Indian state is the largest producer of oilseeds?",
+    "options": ["Madhya Pradesh", "Rajasthan", "Gujarat", "Maharashtra"],
+    "answer": 0,
+    "tip": "Madhya Pradesh leads in oilseed production."
+  },
+  {
+    "question": "Which Indian city is called the 'City of Joy'?",
+    "options": ["Delhi", "Mumbai", "Kolkata", "Chennai"],
+    "answer": 2,
+    "tip": "Kolkata is popularly known as the 'City of Joy'."
+  },
+  {
+    "question": "Which river is the Sardar Sarovar Dam built on?",
+    "options": ["Tapti", "Sabarmati", "Narmada", "Godavari"],
+    "answer": 2,
+    "tip": "Sardar Sarovar Dam is on the Narmada River."
+  },
+  {
+    "question": "Which Indian state is the largest producer of maize?",
+    "options": ["Karnataka", "Madhya Pradesh", "Rajasthan", "Andhra Pradesh"],
+    "answer": 0,
+    "tip": "Karnataka leads in maize production."
+  },
+  {
+    "question": "Which Indian state is the largest producer of sunflower?",
+    "options": ["Karnataka", "Andhra Pradesh", "Maharashtra", "Tamil Nadu"],
+    "answer": 0,
+    "tip": "Karnataka is the top sunflower producer in India."
+  },
+  {
+    "question": "Which Indian state is the largest producer of copper?",
+    "options": ["Rajasthan", "Jharkhand", "Madhya Pradesh", "Odisha"],
+    "answer": 0,
+    "tip": "Rajasthan is the leading copper producer."
+  },
+  {
+    "question": "Which Indian state is the largest producer of lead and zinc?",
+    "options": ["Odisha", "Rajasthan", "Jharkhand", "Madhya Pradesh"],
+    "answer": 1,
+    "tip": "Rajasthan produces the most lead and zinc in India."
+  },
+  {
+    "question": "Which Indian city is called the 'Manchester of South India'?",
+    "options": ["Coimbatore", "Chennai", "Bangalore", "Hyderabad"],
+    "answer": 0,
+    "tip": "Coimbatore is famous for its textile industry."
+  },
+  {
+    "question": "Which Indian river is also known as the 'Dakshina Bhagirathi'?",
+    "options": ["Godavari", "Krishna", "Cauvery", "Mahanadi"],
+    "answer": 2,
+    "tip": "Cauvery is often called the 'Ganga of the South' or 'Dakshina Bhagirathi'."
+  },
+  {
+    "question": "Which Indian state is the largest producer of limestone?",
+    "options": ["Rajasthan", "Madhya Pradesh", "Andhra Pradesh", "Gujarat"],
+    "answer": 0,
+    "tip": "Rajasthan has the largest limestone reserves."
+  },
+  {
+    "question": "Which Indian state is the largest producer of cotton textiles?",
+    "options": ["Maharashtra", "Gujarat", "Punjab", "Tamil Nadu"],
+    "answer": 1,
+    "tip": "Gujarat is a major hub for cotton textiles."
+  },
+  {
+    "question": "Which Indian city is called the 'Diamond City of India'?",
+    "options": ["Mumbai", "Surat", "Ahmedabad", "Jaipur"],
+    "answer": 1,
+    "tip": "Surat is famous for its diamond cutting and polishing industry."
+  },
+  {
+    "question": "Which Indian state is the largest producer of mangoes?",
+    "options": ["Uttar Pradesh", "Maharashtra", "Andhra Pradesh", "Bihar"],
+    "answer": 0,
+    "tip": "Uttar Pradesh is India's top mango producer."
+  },
+  {
+    "question": "Which Indian river is also called the 'Vridha Ganga'?",
+    "options": ["Godavari", "Krishna", "Cauvery", "Mahanadi"],
+    "answer": 0,
+    "tip": "Godavari is called the 'Old Ganga' or 'Vridha Ganga'."
+  },
+  {
+    "question": "Which Indian state is the largest producer of bananas?",
+    "options": ["Kerala", "Maharashtra", "Tamil Nadu", "Gujarat"],
+    "answer": 2,
+    "tip": "Tamil Nadu leads in banana production."
+  },
+  {
+    "question": "Which Indian state is the largest producer of grapes?",
+    "options": ["Maharashtra", "Karnataka", "Andhra Pradesh", "Punjab"],
+    "answer": 0,
+    "tip": "Maharashtra is known for its vineyards and grape production."
+  },
+  {
+    "question": "Which Indian state is the largest producer of oranges?",
+    "options": ["Maharashtra", "Assam", "Punjab", "Madhya Pradesh"],
+    "answer": 0,
+    "tip": "Nagpur in Maharashtra is famous for its oranges."
+  },
+  {
+    "question": "Which Indian city is called the 'City of Nawabs'?",
+    "options": ["Hyderabad", "Lucknow", "Bhopal", "Patna"],
+    "answer": 1,
+    "tip": "Lucknow is renowned for its Nawabi culture."
+  },
+  {
+    "question": "Which Indian state is the largest producer of paddy?",
+    "options": ["West Bengal", "Punjab", "Uttar Pradesh", "Andhra Pradesh"],
+    "answer": 0,
+    "tip": "West Bengal leads in paddy (rice) production."
+  },
+  {
+    "question": "Which Indian state is the largest producer of sugar?",
+    "options": ["Uttar Pradesh", "Maharashtra", "Tamil Nadu", "Punjab"],
+    "answer": 0,
+    "tip": "Uttar Pradesh is India's top sugar producer."
+  },
+  {
+    "question": "Which Indian city is known as the 'Garden City of India'?",
+    "options": ["Bangalore", "Hyderabad", "Chennai", "Pune"],
+    "answer": 0,
+    "tip": "Bangalore is famous for its parks and gardens."
+  },
+  {
+    "question": "Which Indian state is the largest producer of fish?",
+    "options": ["West Bengal", "Andhra Pradesh", "Kerala", "Odisha"],
+    "answer": 1,
+    "tip": "Andhra Pradesh leads in fish production."
+  },
+  {
+    "question": "Which Indian state is the largest producer of coconuts?",
+    "options": ["Kerala", "Tamil Nadu", "Karnataka", "Andhra Pradesh"],
+    "answer": 0,
+    "tip": "Kerala is famous for its coconut palms."
+  },
+  {
+    "question": "Which Indian state is the largest producer of coffee?",
+    "options": ["Kerala", "Karnataka", "Tamil Nadu", "Assam"],
+    "answer": 1,
+    "tip": "Karnataka produces more than two-thirds of India's coffee."
+  },
+  // --------- Batch 3 (101-150) ---------
+  {
+    "question": "Which Indian state has no coastline and no international frontiers?",
+    "options": ["Madhya Pradesh", "Chhattisgarh", "Jharkhand", "Haryana"],
+    "answer": 0,
+    "tip": "Madhya Pradesh is landlocked and does not share a border with any other country or the sea."
+  },
+  {
+    "question": "The Ranchi, Hazaribagh, and Kodarma plateaus collectively form which region?",
+    "options": ["Malwa Plateau", "Deccan Plateau", "Chota Nagpur Plateau", "Baghelkhand Plateau"],
+    "answer": 2,
+    "tip": "Chota Nagpur Plateau is rich in minerals and lies in eastern India."
+  },
+  {
+    "question": "Which mountain range forms the boundary between India and Myanmar?",
+    "options": ["Himalayas", "Rakhine Mountains", "Aravalli Range", "Western Ghats"],
+    "answer": 1,
+    "tip": "Rakhine (Arakan) Mountains include the Naga, Chin, and Mizo hills."
+  },
+  {
+    "question": "What is the predominant type of soil found in the Indo-Gangetic Plain?",
+    "options": ["Black soil", "Red soil", "Alluvial soil", "Laterite soil"],
+    "answer": 2,
+    "tip": "Alluvial soil is fertile and supports intensive agriculture."
+  },
+  {
+    "question": "Which of the following coal fields is located in Jharkhand?",
+    "options": ["Raniganj", "Jharia", "Talcher", "Korba"],
+    "answer": 1,
+    "tip": "Jharia is famous for high-quality coking coal."
+  },
+  {
+    "question": "Which is the largest river system among the Deccan system of rivers?",
+    "options": ["Godavari", "Krishna", "Cauvery", "Mahanadi"],
+    "answer": 0,
+    "tip": "Godavari is the longest river in South India."
+  },
+  {
+    "question": "Which is the largest completed hydroelectric plant in India?",
+    "options": ["Tehri", "Koyna", "Srisailam", "Bhakra Nangal"],
+    "answer": 1,
+    "tip": "Koyna Hydroelectric Project is in Maharashtra."
+  },
+  {
+    "question": "The Bhakra Nangal Dam is built on which river?",
+    "options": ["Beas", "Sutlej", "Ganga", "Yamuna"],
+    "answer": 1,
+    "tip": "Bhakra Nangal is one of the highest gravity dams in the world."
+  },
+  {
+    "question": "Which is the tallest hydropower project in India?",
+    "options": ["Tehri Dam", "Sardar Sarovar", "Nagarjuna Sagar", "Hirakud"],
+    "answer": 0,
+    "tip": "Tehri Dam is the tallest in India, located in Uttarakhand."
+  },
+  {
+    "question": "Which is the largest underground hydroelectric project in India?",
+    "options": ["Nathpa Jhakri", "Tehri", "Koyna", "Balimela"],
+    "answer": 0,
+    "tip": "Nathpa Jhakri is located in Himachal Pradesh."
+  },
+  {
+    "question": "Which river is the Sardar Sarovar Dam built on?",
+    "options": ["Narmada", "Tapti", "Godavari", "Krishna"],
+    "answer": 0,
+    "tip": "Sardar Sarovar is a major dam on the Narmada River."
+  },
+  {
+    "question": "Deccan Traps are largely made of which type of rock?",
+    "options": ["Granitic lava", "Flood basalt", "Limestone", "Sedimentary deposits"],
+    "answer": 1,
+    "tip": "Deccan Traps are famous for their thick basalt flows."
+  },
+  {
+    "question": "Rocks belonging to the Dharwar group are best developed in which region?",
+    "options": ["Garhwal", "Krishna Valley", "Dharwar-Bellary-Mysore", "Rajmahal Hills"],
+    "answer": 2,
+    "tip": "The Dharwar region is in Karnataka."
+  },
+  {
+    "question": "Which one of the following is a trans-Himalayan river?",
+    "options": ["Sutlej", "Ganga", "Yamuna", "Ghaghara"],
+    "answer": 0,
+    "tip": "Sutlej originates in Tibet and flows through the Himalayas."
+  },
+  {
+    "question": "Which is the largest freshwater lake in India?",
+    "options": ["Kolleru", "Wular", "Pangong Tso", "Tso Moriri"],
+    "answer": 1,
+    "tip": "Wular Lake is in Jammu & Kashmir."
+  },
+  {
+    "question": "Which lake is located in Andhra Pradesh?",
+    "options": ["Wular", "Kolleru", "Loktak", "Chilka"],
+    "answer": 1,
+    "tip": "Kolleru Lake is a large freshwater lake in Andhra Pradesh."
+  },
+  {
+    "question": "Which lake is located in Manipur?",
+    "options": ["Wular", "Kolleru", "Loktak", "Chilka"],
+    "answer": 2,
+    "tip": "Loktak Lake is famous for its phoomdis (floating islands)."
+  },
+  {
+    "question": "Which lake is located in Odisha?",
+    "options": ["Wular", "Kolleru", "Loktak", "Chilka"],
+    "answer": 3,
+    "tip": "Chilka Lake is Asia's largest brackish water lagoon."
+  },
+  {
+    "question": "Which river is known as the 'Sorrow of Bengal'?",
+    "options": ["Damodar", "Ganga", "Kosi", "Mahanadi"],
+    "answer": 0,
+    "tip": "Damodar's floods have caused much damage in Bengal."
+  },
+  {
+    "question": "Which Indian city is known as the 'City of Lakes'?",
+    "options": ["Bhopal", "Udaipur", "Nainital", "Srinagar"],
+    "answer": 1,
+    "tip": "Udaipur is famous for its beautiful lakes."
+  },
+  {
+    "question": "Which Indian state is the largest producer of bauxite?",
+    "options": ["Odisha", "Jharkhand", "Chhattisgarh", "Maharashtra"],
+    "answer": 0,
+    "tip": "Odisha has the largest reserves and production of bauxite."
+  },
+  {
+    "question": "Which Indian state is the largest producer of turmeric?",
+    "options": ["Andhra Pradesh", "Tamil Nadu", "Odisha", "Karnataka"],
+    "answer": 0,
+    "tip": "Andhra Pradesh leads in turmeric production."
+  },
+  {
+    "question": "Which Indian state is the largest producer of onions?",
+    "options": ["Maharashtra", "Gujarat", "Karnataka", "Madhya Pradesh"],
+    "answer": 0,
+    "tip": "Maharashtra is India's top onion producer."
+  },
+  {
+    "question": "Which Indian state is the largest producer of cashew nuts?",
+    "options": ["Kerala", "Goa", "Maharashtra", "Andhra Pradesh"],
+    "answer": 3,
+    "tip": "Andhra Pradesh is the top cashew nut producer."
+  },
+  {
+    "question": "Which Indian city is called the 'Steel City of India'?",
+    "options": ["Jamshedpur", "Bhilai", "Durgapur", "Rourkela"],
+    "answer": 0,
+    "tip": "Jamshedpur is home to Tata Steel, India's first steel plant."
+  },
+  {
+    "question": "Which Indian state is the largest producer of coal?",
+    "options": ["Jharkhand", "Odisha", "Chhattisgarh", "West Bengal"],
+    "answer": 0,
+    "tip": "Jharkhand has the largest coal reserves and production."
+  },
+  {
+    "question": "Which Indian city is called the 'Gateway of India'?",
+    "options": ["Chennai", "Mumbai", "Kolkata", "Goa"],
+    "answer": 1,
+    "tip": "Mumbai is famous for the Gateway of India monument."
+  },
+  {
+    "question": "Which Indian state is the largest producer of groundnuts?",
+    "options": ["Gujarat", "Maharashtra", "Andhra Pradesh", "Tamil Nadu"],
+    "answer": 0,
+    "tip": "Gujarat leads in groundnut production."
+  },
+  {
+    "question": "Which is the largest man-made lake in India?",
+    "options": ["Gobind Sagar", "Hussain Sagar", "Upper Lake", "Vembanad"],
+    "answer": 0,
+    "tip": "Gobind Sagar in Himachal Pradesh is the largest artificial lake."
+  },
+  {
+    "question": "Which Indian state is the largest producer of cardamom?",
+    "options": ["Kerala", "Karnataka", "Tamil Nadu", "Assam"],
+    "answer": 0,
+    "tip": "Kerala is known for its high-quality cardamom."
+  },
+  {
+    "question": "Which river is the Tehri Dam built on?",
+    "options": ["Bhagirathi", "Alaknanda", "Yamuna", "Ganga"],
+    "answer": 0,
+    "tip": "Tehri Dam is constructed on the Bhagirathi River in Uttarakhand."
+  },
+  {
+    "question": "Which Indian state is the largest producer of tobacco?",
+    "options": ["Andhra Pradesh", "Gujarat", "Karnataka", "West Bengal"],
+    "answer": 0,
+    "tip": "Andhra Pradesh is India's leading tobacco producer."
+  },
+  {
+    "question": "Which Indian city is called the 'Queen of the Arabian Sea'?",
+    "options": ["Mumbai", "Cochin", "Goa", "Mangalore"],
+    "answer": 1,
+    "tip": "Cochin (Kochi) is known as the 'Queen of the Arabian Sea'."
+  },
+  {
+    "question": "Which Indian state is the largest producer of saffron?",
+    "options": ["Himachal Pradesh", "Jammu & Kashmir", "Uttarakhand", "Sikkim"],
+    "answer": 1,
+    "tip": "Jammu & Kashmir is famous for its saffron fields."
+  },
+  {
+    "question": "Which Indian state is the largest producer of oilseeds?",
+    "options": ["Madhya Pradesh", "Rajasthan", "Gujarat", "Maharashtra"],
+    "answer": 0,
+    "tip": "Madhya Pradesh leads in oilseed production."
+  },
+  {
+    "question": "Which Indian city is called the 'City of Joy'?",
+    "options": ["Delhi", "Mumbai", "Kolkata", "Chennai"],
+    "answer": 2,
+    "tip": "Kolkata is popularly known as the 'City of Joy'."
+  },
+  {
+    "question": "Which river is the Sardar Sarovar Dam built on?",
+    "options": ["Tapti", "Sabarmati", "Narmada", "Godavari"],
+    "answer": 2,
+    "tip": "Sardar Sarovar Dam is on the Narmada River."
+  },
+  {
+    "question": "Which Indian state is the largest producer of maize?",
+    "options": ["Karnataka", "Madhya Pradesh", "Rajasthan", "Andhra Pradesh"],
+    "answer": 0,
+    "tip": "Karnataka leads in maize production."
+  },
+  {
+    "question": "Which Indian state is the largest producer of sunflower?",
+    "options": ["Karnataka", "Andhra Pradesh", "Maharashtra", "Tamil Nadu"],
+    "answer": 0,
+    "tip": "Karnataka is the top sunflower producer in India."
+  },
+  {
+    "question": "Which Indian state is the largest producer of copper?",
+    "options": ["Rajasthan", "Jharkhand", "Madhya Pradesh", "Odisha"],
+    "answer": 0,
+    "tip": "Rajasthan is the leading copper producer."
+  },
+  {
+    "question": "Which Indian state is the largest producer of lead and zinc?",
+    "options": ["Odisha", "Rajasthan", "Jharkhand", "Madhya Pradesh"],
+    "answer": 1,
+    "tip": "Rajasthan produces the most lead and zinc in India."
+  },
+  {
+    "question": "Which Indian city is called the 'Manchester of South India'?",
+    "options": ["Coimbatore", "Chennai", "Bangalore", "Hyderabad"],
+    "answer": 0,
+    "tip": "Coimbatore is famous for its textile industry."
+  },
+  {
+    "question": "Which Indian river is also known as the 'Dakshina Bhagirathi'?",
+    "options": ["Godavari", "Krishna", "Cauvery", "Mahanadi"],
+    "answer": 2,
+    "tip": "Cauvery is often called the 'Ganga of the South' or 'Dakshina Bhagirathi'."
+  },
+  {
+    "question": "Which Indian state is the largest producer of limestone?",
+    "options": ["Rajasthan", "Madhya Pradesh", "Andhra Pradesh", "Gujarat"],
+    "answer": 0,
+    "tip": "Rajasthan has the largest limestone reserves."
+  },
+  {
+    "question": "Which Indian state is the largest producer of cotton textiles?",
+    "options": ["Maharashtra", "Gujarat", "Punjab", "Tamil Nadu"],
+    "answer": 1,
+    "tip": "Gujarat is a major hub for cotton textiles."
+  },
+  {
+    "question": "Which Indian city is called the 'Diamond City of India'?",
+    "options": ["Mumbai", "Surat", "Ahmedabad", "Jaipur"],
+    "answer": 1,
+    "tip": "Surat is famous for its diamond cutting and polishing industry."
+  },
+  {
+    "question": "Which Indian state is the largest producer of mangoes?",
+    "options": ["Uttar Pradesh", "Maharashtra", "Andhra Pradesh", "Bihar"],
+    "answer": 0,
+    "tip": "Uttar Pradesh is India's top mango producer."
+  },
+  {
+    "question": "Which Indian river is also called the 'Vridha Ganga'?",
+    "options": ["Godavari", "Krishna", "Cauvery", "Mahanadi"],
+    "answer": 0,
+    "tip": "Godavari is called the 'Old Ganga' or 'Vridha Ganga'."
+  },
+  {
+    "question": "Which Indian state is the largest producer of bananas?",
+    "options": ["Kerala", "Maharashtra", "Tamil Nadu", "Gujarat"],
+    "answer": 2,
+    "tip": "Tamil Nadu leads in banana production."
+  },
+  {
+    "question": "Which Indian state is the largest producer of grapes?",
+    "options": ["Maharashtra", "Karnataka", "Andhra Pradesh", "Punjab"],
+    "answer": 0,
+    "tip": "Maharashtra is known for its vineyards and grape production."
+  },
+  {
+    "question": "Which Indian state is the largest producer of oranges?",
     "options": ["Maharashtra", "Assam", "Punjab", "Madhya Pradesh"],
     "answer": 0,
     "tip": "Nagpur in Maharashtra is famous for its oranges."
