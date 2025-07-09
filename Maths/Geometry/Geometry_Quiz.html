@@ -49,7 +49,7 @@
         }
         startQuiz();
       } catch (e) {
-        document.getElementById('quizContainer').innerHTML = `<div class="error">Could not load questions. Please try again later.<br>${e.message}</div>`;
+        document.getElementById('quizContainer').innerHTML = `<div class="error">Could not load questions. Please try it again later.<br>${e.message}</div>`;
         console.error(e);
       }
     }
